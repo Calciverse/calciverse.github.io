@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPF Calculator – Public Provident Fund Maturity (India) | Calciverse</title>
+
+<meta name="description" content="Free PPF Calculator for India. Calculate Public Provident Fund maturity amount, total interest earned and yearly growth instantly. Accurate and easy to use.">
+
+<meta name="keywords" content="PPF Calculator, PPF Calculator India, Public Provident Fund Calculator, PPF maturity calculator, PPF interest calculator">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/ppf-calculator.html">
+
+<meta property="og:title" content="PPF Calculator – Public Provident Fund Calculator India">
+<meta property="og:description" content="Calculate PPF maturity amount and interest earned instantly with year-wise breakdown.">
+<meta property="og:type" content="website">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "PPF Calculator",
+ "applicationCategory": "FinanceApplication",
+ "operatingSystem": "All"
+}
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f4f6fb;color:#1e293b;}
+
+.navbar{background:#fff;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.logo{font-size:20px;font-weight:700;color:#2563eb;}
+nav a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #0F172A;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #2563EB;
+}
+
+.hero{background:linear-gradient(135deg,#2563eb,#4f46e5);padding:60px 20px;text-align:center;color:#fff;}
+.hero h1{font-size:32px;margin-bottom:10px;}
+
+.container{max-width:1000px;margin:auto;padding:40px 20px;}
+.card{background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+label{font-weight:600;font-size:14px;margin-bottom:6px;}
+input{padding:12px;border-radius:10px;border:1px solid #e2e8f0;width:100%;}
+
+.btn-primary{background:#2563eb;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:600;margin-top:20px;cursor:pointer;width:100%;}
+.btn-primary:hover{background:#1d4ed8;}
+
+.result-box{background:#ecfdf5;border-left:5px solid #10b981;padding:20px;border-radius:12px;margin-top:20px;}
+canvas{ margin-top:30px; max-height:260px; }
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+th,td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:center;font-size:14px;}
+th{background:#f1f5f9;}
+
+.ad-box{background:#eef2ff;padding:20px;text-align:center;border-radius:12px;margin:30px 0;}
+
+.seo-content{margin-top:60px;line-height:1.8;color:#475569;}
+
+.footer {
+    background: #0F172A;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #CBD5E1;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+@media(max-width:768px){
+.form-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="logo">Calciverse</div>
+<nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Calculators</a>
+            <a href="../about.html">About</a>
+ <a href="../contact.html">Contact</a>
+        </nav>
+</div>
+
+<div class="hero">
+<h1>PPF Calculator – Public Provident Fund (India)</h1>
+<p>Calculate PPF maturity amount and yearly growth instantly.</p>
+</div>
+
+<div class="container">
+
+<div class="ad-box">Top Ad Space</div>
+
+<div class="card">
+
+<div class="form-grid">
+<div>
+<label>Yearly Investment (₹)</label>
+<input type="number" id="ppfInvestment" value="100000">
+</div>
+
+<div>
+<label>Interest Rate (%)</label>
+<input type="number" id="ppfRate" value="7.1">
+</div>
+
+<div>
+<label>Investment Period (Years)</label>
+<input type="number" id="ppfYears" value="15">
+</div>
+</div>
+
+<button class="btn-primary" onclick="calculatePPF()">Calculate PPF</button>
+
+<div id="ppfResult" class="result-box"></div>
+
+<canvas id="ppfChart"></canvas>
+
+<h3 style="margin-top:40px;">Year-wise Growth</h3>
+
+<table id="ppfTable">
+<thead>
+<tr>
+<th>Year</th>
+<th>Total Invested</th>
+<th>Interest Earned</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+<div class="ad-box">Bottom Ad Space</div>
+
+<div class="seo-content">
+
+<h2>What is Public Provident Fund (PPF)?</h2>
+<p>PPF is a long-term government-backed savings scheme in India offering safe and tax-efficient returns. It is ideal for long-term wealth creation and retirement planning.</p>
+
+<h2>How PPF Interest is Calculated?</h2>
+<p>PPF interest is compounded annually. The government announces interest rates quarterly. This calculator estimates maturity based on yearly compounding.</p>
+
+<h2>Benefits of PPF Investment</h2>
+<ul>
+<li>Government-backed security</li>
+<li>Tax benefits under Section 80C</li>
+<li>Long-term compounding growth</li>
+<li>Guaranteed returns</li>
+</ul>
+
+<p>Also try our <a href="fd-calculator.html">FD Calculator</a> or 
+<a href="sip-calculator.html">SIP Calculator</a> for better financial planning.</p>
+
+</div>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Calciverse. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms</a>
+         <a href="../contact.html">Contact</a>
+        </div>
+</footer>
+
+<script>
+let ppfChartInstance=null;
+
+function calculatePPF(){
+
+const yearlyInvestment=parseFloat(document.getElementById("ppfInvestment").value);
+const rate=parseFloat(document.getElementById("ppfRate").value)/100;
+const years=parseInt(document.getElementById("ppfYears").value);
+
+if(isNaN(yearlyInvestment)||isNaN(rate)||isNaN(years)||yearlyInvestment<=0||years<=0){
+alert("Enter valid values");
+return;
+}
+
+let balance=0;
+let totalInvested=0;
+const tbody=document.querySelector("#ppfTable tbody");
+tbody.innerHTML="";
+
+for(let year=1;year<=years;year++){
+totalInvested+=yearlyInvestment;
+balance=(balance+yearlyInvestment)*(1+rate);
+let interest=balance-totalInvested;
+
+const row=document.createElement("tr");
+row.innerHTML=
+"<td>"+year+"</td>"+
+"<td>₹"+totalInvested.toFixed(2)+"</td>"+
+"<td>₹"+interest.toFixed(2)+"</td>"+
+"<td>₹"+balance.toFixed(2)+"</td>";
+tbody.appendChild(row);
+}
+
+const totalInterest=balance-totalInvested;
+
+document.getElementById("ppfResult").innerHTML=
+"<strong>Total Invested:</strong> ₹"+totalInvested.toFixed(2)+"<br>"+
+"<strong>Total Interest:</strong> ₹"+totalInterest.toFixed(2)+"<br>"+
+"<strong>Maturity Amount:</strong> ₹"+balance.toFixed(2);
+
+if(ppfChartInstance) ppfChartInstance.destroy();
+
+ppfChartInstance=new Chart(document.getElementById("ppfChart"),{
+type:'doughnut',
+data:{
+labels:["Invested","Interest"],
+datasets:[{
+data:[totalInvested,totalInterest],
+backgroundColor:["#2563eb","#10b981"]
+}]
+}
+});
+}
+</script>
+
+</body>
+</html>
