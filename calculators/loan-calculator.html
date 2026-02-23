@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Calculator – EMI, Interest & Repayment Schedule | Calciverse</title>
+
+<meta name="description" content="Free Loan Calculator to calculate monthly EMI, total interest payable and complete repayment schedule instantly. Accurate results for personal, car and home loans.">
+
+<meta name="keywords" content="loan calculator, EMI calculator, personal loan EMI calculator, car loan calculator, home loan EMI calculator India">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/loan-calculator.html">
+
+<meta property="og:title" content="Loan Calculator – EMI & Interest Breakdown">
+<meta property="og:description" content="Calculate your monthly loan EMI and total interest instantly using our free online calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adinova-labs.github.io/calciverse/calculators/loan-calculator.html">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Loan Calculator",
+ "url": "https://adinova-labs.github.io/calciverse/calculators/loan-calculator.html",
+ "applicationCategory": "FinanceApplication",
+ "operatingSystem": "All"
+}
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f4f6fb;color:#1e293b;}
+
+header{
+display:flex;justify-content:space-between;
+padding:18px 8%;background:#fff;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.logo{font-size:20px;font-weight:700;color:#2563eb;}
+nav a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #0F172A;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #2563EB;
+}
+.hero{
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:#fff;text-align:center;padding:60px 20px;
+}
+.hero h1{font-size:32px;margin-bottom:10px;}
+
+.ad-slot{
+max-width:1000px;margin:25px auto;
+padding:20px;text-align:center;
+background:#eef2ff;border-radius:12px;
+}
+
+.container{max-width:1000px;margin:auto;padding:40px 20px;}
+
+.card{
+background:#fff;padding:30px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.form-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+label{font-size:14px;font-weight:600;margin-bottom:6px;}
+input{
+width:100%;padding:12px;border-radius:10px;
+border:1px solid #e2e8f0;
+}
+
+button{
+margin-top:20px;width:100%;
+padding:14px;border:none;
+background:#2563eb;color:#fff;
+font-weight:600;border-radius:12px;
+cursor:pointer;
+}
+button:hover{background:#1d4ed8;}
+
+.result-box{
+margin-top:20px;padding:20px;
+background:#ecfdf5;
+border-left:5px solid #10b981;
+border-radius:12px;
+display:none;
+}
+canvas{ margin-top:30px; max-height:260px; }
+table{
+width:100%;margin-top:30px;
+border-collapse:collapse;
+}
+th,td{
+padding:12px;
+border-bottom:1px solid #e2e8f0;
+text-align:center;
+font-size:14px;
+}
+th{background:#f1f5f9;}
+
+.seo-section{
+max-width:1000px;margin:60px auto;
+padding:0 20px;line-height:1.8;
+color:#475569;
+}
+
+.footer {
+    background: #0F172A;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #CBD5E1;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+@media(max-width:768px){
+.form-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Calciverse</div>
+<nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Calculators</a>
+            <a href="../about.html">About</a>
+ <a href="../contact.html">Contact</a>
+        </nav>
+</header>
+
+<section class="hero">
+<h1>Loan Calculator</h1>
+<p>Calculate monthly EMI, total interest and repayment schedule instantly.</p>
+</section>
+
+<div class="ad-slot">Top Ad Space</div>
+
+<div class="container">
+<div class="card">
+
+<div class="form-grid">
+<div>
+<label>Loan Amount</label>
+<input type="number" id="loanAmount" placeholder="Enter loan amount">
+</div>
+
+<div>
+<label>Annual Interest Rate (%)</label>
+<input type="number" id="rate" placeholder="Enter interest rate">
+</div>
+
+<div>
+<label>Loan Term (Years)</label>
+<input type="number" id="years" placeholder="Enter years">
+</div>
+</div>
+
+<button onclick="calculateLoan()">Calculate EMI</button>
+
+<div id="result" class="result-box"></div>
+
+<canvas id="chart" style="margin-top:30px;"></canvas>
+
+<h3 style="margin-top:40px;">Amortization Schedule</h3>
+
+<table id="schedule">
+<thead>
+<tr>
+<th>Month</th>
+<th>EMI</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+</div>
+
+<div class="ad-slot">Bottom Ad Space</div>
+
+<section class="seo-section">
+
+<h2>What is Loan Calculator?</h2>
+<p>Loan Calculator is a free online financial tool that helps you calculate monthly EMI, total interest payable and full repayment schedule. It is useful for personal loans, car loans, home loans and business loans.</p>
+
+<h2>How Loan EMI is Calculated?</h2>
+<p><strong>EMI = [P × R × (1+R)^N] ÷ [(1+R)^N – 1]</strong></p>
+<p>P = Loan Amount | R = Monthly Interest Rate | N = Total Months</p>
+
+<h2>Benefits of Using Online Loan Calculator</h2>
+<ul>
+<li>Instant EMI estimation</li>
+<li>Accurate total interest calculation</li>
+<li>Better loan comparison</li>
+<li>Financial planning support</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<p><strong>What is EMI?</strong><br>
+EMI (Equated Monthly Installment) is the fixed monthly payment towards your loan.</p>
+
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Calciverse. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms</a>
+         <a href="../contact.html">Contact</a>
+        </div>
+</footer>
+
+<script>
+let chartInstance = null;
+
+function calculateLoan() {
+
+const loan = parseFloat(document.getElementById("loanAmount").value);
+const annual = parseFloat(document.getElementById("rate").value);
+const years = parseFloat(document.getElementById("years").value);
+
+if (isNaN(loan) || isNaN(annual) || isNaN(years) || loan<=0 || annual<=0 || years<=0) {
+alert("Please enter valid positive values.");
+return;
+}
+
+const r = annual / 100 / 12;
+const n = years * 12;
+
+const emi = loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+const total = emi * n;
+const interest = total - loan;
+
+const resultBox = document.getElementById("result");
+resultBox.style.display = "block";
+resultBox.innerHTML =
+"<strong>Monthly EMI:</strong> ₹" + emi.toFixed(2) + "<br>" +
+"<strong>Total Interest:</strong> ₹" + interest.toFixed(2) + "<br>" +
+"<strong>Total Payment:</strong> ₹" + total.toFixed(2);
+
+
+// ===== FIXED CHART RENDER =====
+const ctx = document.getElementById("chart");
+
+if (chartInstance) {
+chartInstance.destroy();
+}
+
+chartInstance = new Chart(ctx, {
+type: "doughnut",
+data: {
+labels: ["Principal", "Interest"],
+datasets: [{
+data: [loan, interest],
+backgroundColor: ["#2563eb", "#10b981"]
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false
+}
+});
+
+// Ensure chart height
+ctx.style.height = "280px";
+
+
+// ===== FIXED TABLE RENDER =====
+const tbody = document.querySelector("#schedule tbody");
+tbody.innerHTML = "";
+
+let balance = loan;
+
+for (let m = 1; m <= n; m++) {
+
+const int = balance * r;
+const princ = emi - int;
+balance -= princ;
+
+const row = document.createElement("tr");
+
+row.innerHTML = `
+<td>${m}</td>
+<td>₹${emi.toFixed(2)}</td>
+<td>₹${princ.toFixed(2)}</td>
+<td>₹${int.toFixed(2)}</td>
+<td>₹${balance > 0 ? balance.toFixed(2) : "0.00"}</td>
+`;
+
+tbody.appendChild(row);
+}
+
+}
+</script>
+
+</body>
+</html>
