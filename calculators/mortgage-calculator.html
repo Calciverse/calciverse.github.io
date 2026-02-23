@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mortgage Calculator – Home Loan EMI & Amortization Schedule | Calciverse</title>
+
+<meta name="description" content="Free Mortgage Calculator to calculate monthly home loan EMI, total interest payable and full amortization schedule instantly. Accurate and fast results for property buyers.">
+
+<meta name="keywords" content="mortgage calculator, home loan EMI calculator, housing loan calculator India, amortization schedule calculator, monthly mortgage payment calculator">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/mortgage-calculator.html">
+
+<meta property="og:title" content="Mortgage Calculator – Monthly EMI & Amortization">
+<meta property="og:description" content="Estimate your monthly mortgage EMI and total interest instantly using our free online calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adinova-labs.github.io/calciverse/calculators/mortgage-calculator.html">
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Mortgage Calculator",
+ "url": "https://adinova-labs.github.io/calciverse/calculators/mortgage-calculator.html",
+ "applicationCategory": "FinanceApplication",
+ "operatingSystem": "All",
+ "description": "Online mortgage calculator to calculate monthly EMI, total interest and amortization schedule."
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{
+   "@type": "Question",
+   "name": "How is mortgage EMI calculated?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Mortgage EMI is calculated using the amortization formula based on loan amount, interest rate and tenure."
+   }
+ },{
+   "@type": "Question",
+   "name": "What is amortization schedule?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Amortization schedule is a detailed table showing monthly EMI payments including principal, interest and remaining balance."
+   }
+ }]
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body { margin:0; font-family:Arial; background:#f4f6f9; }
+
+header {
+  display:flex; justify-content:space-between;
+  padding:15px 40px; background:white;
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+header .logo { font-weight:bold; font-size:20px; color:#2f55d4; }
+header nav a { margin-left:20px; text-decoration:none; color:#333; }
+
+.hero {
+  background:linear-gradient(90deg,#2f55d4,#3a6ee8);
+  color:white; text-align:center;
+  padding:50px 20px;
+}
+
+.ad-top,.ad-bottom{
+  max-width:1000px; margin:25px auto;
+  padding:20px; text-align:center;
+  background:#e9edf5; border-radius:8px;
+}
+
+.container{ max-width:1000px; margin:40px auto; padding:0 20px; }
+
+.card{
+  background:white; padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.form-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:20px;
+}
+
+label{ font-size:14px; font-weight:600; }
+input,select{
+  width:100%; padding:10px;
+  border-radius:6px; border:1px solid #ccc;
+  margin-top:5px;
+}
+
+button{
+  margin-top:15px; padding:10px 18px;
+  background:#1f8f6b; color:white;
+  border:none; border-radius:6px;
+  font-weight:600; cursor:pointer;
+}
+
+button:hover{ background:#167a5a; }
+
+.result-box{
+  margin-top:20px; padding:18px;
+  background:#e6f4ef;
+  border-left:4px solid #1f8f6b;
+  border-radius:8px;
+}
+
+canvas{ margin-top:30px; max-height:260px; }
+
+table{
+  width:100%; margin-top:30px;
+  border-collapse:collapse; font-size:14px;
+}
+th,td{
+  padding:10px; border-bottom:1px solid #eee;
+  text-align:center;
+}
+th{ background:#f2f3f7; }
+
+.faq{ max-width:1000px; margin:60px auto; padding:0 20px; }
+
+footer{
+  background:#0f1a3a; color:white;
+  text-align:center; padding:25px;
+  margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Calciverse</div>
+  <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Calculators</a>
+            <a href="../about.html">About</a>
+   <a href="../contact.html">Contact</a>
+        </nav>
+</header>
+
+<section class="hero">
+  <h1>Mortgage Calculator</h1>
+  <p>Estimate your monthly home loan EMI instantly.</p>
+</section>
+
+<div class="ad-top">Ad Space (Top Banner)</div>
+
+<div class="container">
+<div class="card">
+
+<div class="form-grid">
+  <div>
+    <label>Home Price</label>
+    <input type="number" id="homePrice">
+  </div>
+  <div>
+    <label>Down Payment</label>
+    <input type="number" id="downPayment">
+  </div>
+  <div>
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="rate">
+  </div>
+  <div>
+    <label>Loan Term (Years)</label>
+    <input type="number" id="years">
+  </div>
+</div>
+
+<button onclick="calculateMortgage()">Calculate</button>
+
+<div id="result" class="result-box"></div>
+
+<canvas id="chart"></canvas>
+
+<table id="schedule">
+<thead>
+<tr>
+<th>Month</th>
+<th>EMI</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+</div>
+
+<div class="ad-bottom">Advertisement</div>
+
+<section style="max-width:1000px;margin:60px auto;padding:0 20px;line-height:1.8;color:#475569;">
+
+<h2>What is Mortgage Calculator?</h2>
+<p>A Mortgage Calculator is an online financial tool that helps you estimate your monthly home loan EMI (Equated Monthly Installment). It calculates how much you need to pay every month based on home price, down payment, interest rate and loan tenure.</p>
+
+<h2>How Does Mortgage EMI Work?</h2>
+<p>Mortgage EMI is calculated using the standard amortization formula. Each EMI consists of two parts:</p>
+<ul>
+<li><strong>Principal Amount</strong> – Portion of loan repaid</li>
+<li><strong>Interest Amount</strong> – Cost of borrowing</li>
+</ul>
+
+<h2>Mortgage EMI Formula</h2>
+<p><strong>EMI = [P × R × (1+R)^N] ÷ [(1+R)^N – 1]</strong></p>
+<p>Where:<br>
+P = Loan Amount<br>
+R = Monthly Interest Rate<br>
+N = Total number of months</p>
+
+<h2>Benefits of Using Online Mortgage Calculator</h2>
+<ul>
+<li>Instant EMI calculation</li>
+<li>Full amortization schedule</li>
+<li>Compare loan options easily</li>
+<li>Better financial planning</li>
+</ul>
+
+<h2>Example Calculation</h2>
+<p>If you buy a home worth ₹50,00,000 with ₹5,00,000 down payment at 8% interest for 20 years, the calculator instantly shows your EMI, total interest payable and total repayment amount.</p>
+
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Calciverse. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms</a>
+         <a href="../contact.html">Contact</a>
+        </div>
+</footer>
+
+<script>
+let chartInstance=null;
+
+function calculateMortgage(){
+
+const price=parseFloat(document.getElementById("homePrice").value);
+const down=parseFloat(document.getElementById("downPayment").value);
+const annual=parseFloat(document.getElementById("rate").value);
+const years=parseFloat(document.getElementById("years").value);
+
+if(isNaN(price)||isNaN(down)||isNaN(annual)||isNaN(years)){
+document.getElementById("result").innerHTML="Please enter valid values.";
+return;
+}
+
+const loan=price-down;
+const r=annual/100/12;
+const n=years*12;
+
+const emi=loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+const total=emi*n;
+const interest=total-loan;
+
+document.getElementById("result").innerHTML=
+"Loan Amount: ₹"+loan.toFixed(2)+"<br>"+
+"Monthly EMI: ₹"+emi.toFixed(2)+"<br>"+
+"Total Interest: ₹"+interest.toFixed(2)+"<br><br>"+
+"<strong>Total Payment: ₹"+total.toFixed(2)+"</strong>";
+
+if(chartInstance){ chartInstance.destroy(); }
+
+chartInstance=new Chart(document.getElementById("chart"),{
+type:"doughnut",
+data:{
+labels:["Principal","Interest"],
+datasets:[{ data:[loan,interest] }]
+},
+options:{ responsive:true, maintainAspectRatio:false }
+});
+
+const tbody=document.querySelector("#schedule tbody");
+tbody.innerHTML="";
+let balance=loan;
+
+for(let m=1;m<=n;m++){
+const int=balance*r;
+const princ=emi-int;
+balance-=princ;
+
+tbody.innerHTML+=`
+<tr>
+<td>${m}</td>
+<td>₹${emi.toFixed(2)}</td>
+<td>₹${princ.toFixed(2)}</td>
+<td>₹${int.toFixed(2)}</td>
+<td>₹${balance>0?balance.toFixed(2):"0.00"}</td>
+</tr>
+`;
+}
+}
+</script>
+
+</body>
+</html>
