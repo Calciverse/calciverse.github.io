@@ -405,3 +405,11 @@ width:110px;
 background:#059669;
 transform:scale(1.05);
 }
+    .card {
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
