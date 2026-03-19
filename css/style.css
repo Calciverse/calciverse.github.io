@@ -92,23 +92,56 @@ h2 {
     gap: 20px;
 }
 
-/* CARD */
+/* CARD FINAL DESIGN */
 .card {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: 0.3s;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    position: relative;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
 }
 
+/* TITLE */
 .card h3 {
+    font-size: 18px;
     color: #2563eb;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.card p {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 20px;
+}
+
+/* BUTTON */
+.card-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    width: fit-content;
+    transition: 0.3s;
+}
+
+.card-btn:hover {
+    transform: scale(1.05);
 }
 
 /* CONTENT */
