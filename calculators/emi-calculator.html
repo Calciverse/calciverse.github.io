@@ -4,11 +4,50 @@
 <meta charset="UTF-8">
 <title>EMI Calculator - Calculate Loan EMI Online | Calciverse</title>
 
-<meta name="description" content="Use our EMI calculator to calculate monthly loan EMI, total interest and payment instantly. Free and accurate calculator online.">
+<meta name="description" content="Calculate your monthly EMI, total interest and payment instantly using our free EMI calculator.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
+
+<style>
+.calc-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: auto;
+}
+
+.calc-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #ecfdf5;
+    border-left: 5px solid #22c55e;
+    border-radius: 10px;
+}
+
+.download-btn {
+    margin-top: 15px;
+}
+</style>
+
 </head>
 
 <body>
@@ -30,123 +69,124 @@
 <section class="hero">
     <div class="container">
         <h1>EMI Calculator</h1>
-        <p>Calculate your monthly loan EMI, total interest and payment instantly.</p>
+        <p>Calculate EMI, total interest and payment instantly.</p>
     </div>
 </section>
 
-<!-- CALCULATOR BOX -->
+<!-- CALCULATOR -->
 <section class="categories">
     <div class="container">
 
-        <div class="card">
+        <div class="calc-box">
 
             <label>Loan Amount (₹)</label>
-            <input type="number" id="loan" placeholder="Enter amount">
+            <input type="number" id="loan">
 
             <label>Interest Rate (%)</label>
-            <input type="number" id="rate" placeholder="Enter interest">
+            <input type="number" id="rate">
 
             <label>Loan Tenure (Months)</label>
-            <input type="number" id="tenure" placeholder="Enter months">
+            <input type="number" id="tenure">
 
             <button class="card-btn" onclick="calculateEMI()">Calculate EMI</button>
 
-            <div id="result" style="margin-top:20px;"></div>
+            <div class="result-box" id="result" style="display:none;"></div>
+
+            <button class="card-btn download-btn" onclick="downloadPDF()" style="display:none;" id="pdfBtn">
+                Download Report
+            </button>
 
         </div>
 
     </div>
 </section>
 
-<!-- SEO CONTENT -->
+<!-- AD -->
+<div class="container" style="margin:40px auto;">
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-7962014317457914"
+        data-ad-slot="1234567890"
+        data-ad-format="auto"></ins>
+</div>
+
+<!-- CONTENT -->
 <section class="seo-content">
-    <div class="container">
+<div class="container">
 
-        <h2>What is EMI?</h2>
-        <p>EMI (Equated Monthly Installment) is the fixed monthly payment made by a borrower to repay a loan. It includes both the principal amount and the interest charged by the lender.</p>
+<h2>What is EMI?</h2>
+<p>EMI (Equated Monthly Installment) is the fixed monthly payment made towards loan repayment.</p>
 
-        <h2>How EMI is Calculated?</h2>
-        <p>The EMI amount depends on three main factors: loan amount, interest rate, and tenure. The calculation is based on a standard formula used by banks and financial institutions.</p>
+<h2>How EMI is Calculated?</h2>
+<p>EMI depends on loan amount, interest rate and tenure.</p>
 
-        <h2>EMI Formula</h2>
-        <p><b>EMI = [P × R × (1+R)^N] / [(1+R)^N – 1]</b></p>
+<h2>Formula</h2>
+<p><b>EMI = [P × R × (1+R)^N] / [(1+R)^N – 1]</b></p>
 
-        <h2>Example Calculation</h2>
-        <p>If you take a loan of ₹1,00,000 at 10% annual interest for 12 months, the EMI will be calculated using the above formula and result in fixed monthly payments.</p>
+<h2>Benefits</h2>
+<ul>
+<li>Easy planning</li>
+<li>Instant calculation</li>
+<li>Accurate results</li>
+</ul>
 
-        <h2>Benefits of EMI Calculator</h2>
-        <ul>
-            <li>Instant and accurate results</li>
-            <li>Helps in financial planning</li>
-            <li>Easy to use for everyone</li>
-        </ul>
-
-        <h2>FAQ</h2>
-        <p><b>Is EMI fixed?</b><br>Yes, EMI remains fixed unless interest rate changes.</p>
-
-        <p><b>Can EMI be reduced?</b><br>Yes, by increasing tenure or reducing interest rate.</p>
-
-    </div>
-</section>
-
-<!-- RELATED -->
-<section class="categories">
-    <div class="container">
-
-        <h2>Related Calculators</h2>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Loan Calculator</h3>
-                <p>Estimate total loan repayment.</p>
-                <a href="loan-calculator.html" class="card-btn">Open</a>
-            </div>
-
-            <div class="card">
-                <h3>Interest Calculator</h3>
-                <p>Calculate interest easily.</p>
-                <a href="compound-interest-calculator.html" class="card-btn">Open</a>
-            </div>
-
-            <div class="card">
-                <h3>GST Calculator</h3>
-                <p>Quick GST calculations.</p>
-                <a href="gst-calculator.html" class="card-btn">Open</a>
-            </div>
-
-        </div>
-
-    </div>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
     <div class="container">
-        <p>© 2026 Calciverse. All Rights Reserved.</p>
-
-        <div class="footer-links">
-            <a href="../about.html">About</a> |
-            <a href="../privacy-policy.html">Privacy Policy</a> |
-            <a href="../terms.html">Terms</a> |
-            <a href="../contact.html">Contact</a>
-        </div>
+        <p>© 2026 Calciverse</p>
     </div>
 </footer>
 
 <script>
+
+let lastData = {};
+
 function calculateEMI() {
-    let P = document.getElementById('loan').value;
-    let annualRate = document.getElementById('rate').value;
-    let N = document.getElementById('tenure').value;
 
-    let R = annualRate / 12 / 100;
+let P = document.getElementById('loan').value;
+let annualRate = document.getElementById('rate').value;
+let N = document.getElementById('tenure').value;
 
-    let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+let R = annualRate / 12 / 100;
 
-    document.getElementById('result').innerHTML =
-        "<b>Monthly EMI:</b> ₹ " + EMI.toFixed(2);
+let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+let totalPayment = EMI * N;
+let totalInterest = totalPayment - P;
+
+lastData = {P, annualRate, N, EMI, totalPayment, totalInterest};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Monthly EMI:</b> ₹ ${EMI.toFixed(2)} <br>
+<b>Total Interest:</b> ₹ ${totalInterest.toFixed(2)} <br>
+<b>Total Payment:</b> ₹ ${totalPayment.toFixed(2)}
+`;
 }
+
+function downloadPDF() {
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+doc.text("EMI Report - Calciverse", 20, 20);
+doc.text(`Loan Amount: ₹ ${lastData.P}`, 20, 40);
+doc.text(`Interest Rate: ${lastData.annualRate}%`, 20, 50);
+doc.text(`Tenure: ${lastData.N} months`, 20, 60);
+
+doc.text(`Monthly EMI: ₹ ${lastData.EMI.toFixed(2)}`, 20, 80);
+doc.text(`Total Interest: ₹ ${lastData.totalInterest.toFixed(2)}`, 20, 90);
+doc.text(`Total Payment: ₹ ${lastData.totalPayment.toFixed(2)}`, 20, 100);
+
+doc.save("emi-report.pdf");
+}
+
+// Ads load
+(adsbygoogle = window.adsbygoogle || []).push({});
+
 </script>
 
 </body>
