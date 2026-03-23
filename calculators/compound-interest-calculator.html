@@ -2,255 +2,161 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Compound Interest Calculator | Calciverse</title>
+
+<meta name="description" content="Calculate compound interest, total investment value and earnings instantly.">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compound Interest Calculator – Investment Growth & Future Value | Calciverse</title>
+<link rel="stylesheet" href="../css/style.css">
 
-<meta name="description" content="Free Compound Interest Calculator to calculate investment growth, total interest earned and final maturity amount instantly. Supports monthly, quarterly and yearly compounding.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<meta name="keywords" content="compound interest calculator, investment growth calculator, future value calculator, interest calculator India, compounding calculator">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/compound-interest-calculator.html">
-
-<meta property="og:title" content="Compound Interest Calculator – Investment Growth Tool">
-<meta property="og:description" content="Estimate your investment growth using compound interest formula instantly.">
-<meta property="og:type" content="website">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebApplication",
- "name": "Compound Interest Calculator",
- "applicationCategory": "FinanceApplication",
- "operatingSystem": "All"
-}
-</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#f4f6fb;color:#1e293b;}
-
-header{
-display:flex;justify-content:space-between;
-padding:18px 8%;background:#fff;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-.logo{font-size:20px;font-weight:700;color:#2563eb;}
-nav a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #0F172A;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #2563EB;
-}
-.hero{
-background:linear-gradient(135deg,#2563eb,#4f46e5);
-color:#fff;text-align:center;padding:60px 20px;
-}
-.hero h1{font-size:32px;margin-bottom:10px;}
-
-.ad-slot{
-max-width:1000px;margin:25px auto;
-padding:20px;text-align:center;
-background:#eef2ff;border-radius:12px;
-}
-
-.container{max-width:1000px;margin:auto;padding:40px 20px;}
-
-.card{
-background:#fff;padding:30px;
-border-radius:16px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-max-width:700px;margin:auto;
-}
-
-label{font-weight:600;font-size:14px;margin-bottom:6px;display:block;}
-input,select{
-width:100%;padding:12px;
-border-radius:10px;border:1px solid #e2e8f0;
-margin-bottom:18px;
-}
-
-button{
-width:100%;padding:14px;
-background:#2563eb;color:#fff;
-border:none;border-radius:12px;
-font-weight:600;cursor:pointer;
-}
-button:hover{background:#1d4ed8;}
-
-.result-box{
-margin-top:20px;padding:20px;
-background:#ecfdf5;
-border-left:5px solid #10b981;
-border-radius:12px;
-display:none;
-}
-
-canvas{ margin-top:30px; max-height:260px; }
-
-.seo-section{
-max-width:1000px;margin:60px auto;
-padding:0 20px;line-height:1.8;
-color:#475569;
-}
-
-.footer {
-    background: #0F172A;
-    color: white;
-    padding: 30px 0;
-    text-align: center;
-}
-
-.footer-links {
-    margin-top: 10px;
-}
-
-.footer-links a {
-    color: #CBD5E1;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: white;
-}
+.calc-box{background:#fff;padding:30px;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.08);max-width:800px;margin:auto;}
+.calc-box input{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ddd;}
+.result-box{margin-top:20px;padding:20px;background:#ecfdf5;border-left:5px solid #22c55e;border-radius:10px;}
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="navbar">
+<div class="container nav-content">
 <div class="logo">Calciverse</div>
 <nav>
-            <a href="../index.html">Home</a>
-            <a href="index.html">Calculators</a>
-            <a href="../about.html">About</a>
- <a href="../contact.html">Contact</a>
-        </nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
 </header>
 
 <section class="hero">
+<div class="container">
 <h1>Compound Interest Calculator</h1>
-<p>Estimate your investment growth and future value instantly.</p>
+<p>Calculate investment growth with compound interest.</p>
+</div>
 </section>
 
-<div class="ad-slot">Top Ad Space</div>
-
+<section class="categories">
 <div class="container">
-<div class="card">
 
-<label>Currency</label>
-<select id="ciCurrency">
-<option value="₹">₹ INR</option>
-<option value="$">$ USD</option>
-<option value="€">€ EUR</option>
-<option value="£">£ GBP</option>
-</select>
+<div class="calc-box">
 
-<label>Initial Investment</label>
-<input type="number" id="ciPrincipal" placeholder="Enter amount">
+<label>Principal (₹)</label>
+<input type="number" id="p">
 
-<label>Annual Interest Rate (%)</label>
-<input type="number" id="ciRate" placeholder="Enter rate">
+<label>Interest Rate (%)</label>
+<input type="number" id="r">
 
-<label>Investment Period (Years)</label>
-<input type="number" id="ciYears" placeholder="Enter years">
+<label>Time (Years)</label>
+<input type="number" id="t">
 
-<label>Compounding Frequency</label>
-<select id="ciFrequency">
-<option value="1">Annually</option>
-<option value="4">Quarterly</option>
-<option value="12">Monthly</option>
-<option value="365">Daily</option>
-</select>
+<button class="card-btn" onclick="calcCI()">Calculate</button>
 
-<button onclick="calculateCompound()">Calculate Growth</button>
+<div class="result-box" id="result" style="display:none;"></div>
 
-<div id="ciResult" class="result-box"></div>
-<canvas id="ciChart"></canvas>
+<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
 
 </div>
+
 </div>
+</section>
 
-<div class="ad-slot">Bottom Ad Space</div>
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle" style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-<section class="seo-section">
+<section class="seo-content">
+<div class="container">
 
 <h2>What is Compound Interest?</h2>
-<p>Compound interest is interest calculated on the initial principal and also on the accumulated interest of previous periods. It accelerates investment growth over time.</p>
+<p>Compound interest is calculated on both the principal and accumulated interest.</p>
 
-<h2>Compound Interest Formula</h2>
-<p><strong>A = P (1 + r/n)<sup>nt</sup></strong></p>
+<h2>Formula</h2>
+<p><b>A = P(1 + r/n)^(nt)</b></p>
 
-<h2>Why Compound Interest is Powerful?</h2>
+<div style="margin:20px 0;">
+<ins class="adsbygoogle" style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<h2>Benefits</h2>
 <ul>
-<li>Wealth grows exponentially</li>
-<li>Ideal for long-term investments</li>
-<li>Maximizes returns through reinvestment</li>
+<li>Investment growth</li>
+<li>Better returns</li>
+<li>Financial planning</li>
 </ul>
 
+</div>
 </section>
 
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle" style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
 <footer class="footer">
-    <div class="container">
-        <p>© 2026 Calciverse. All Rights Reserved.</p>
-        <div class="footer-links">
-            <a href="../about.html">About</a> |
+<div class="container">
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
 <a href="../privacy-policy.html">Privacy Policy</a> |
-<a href="../terms.html">Terms</a>
-         <a href="../contact.html">Contact</a>
-        </div>.
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
+</div>
 </footer>
 
 <script>
-let ciChartInstance=null;
 
-function calculateCompound(){
+let data={};
 
-const P=parseFloat(document.getElementById("ciPrincipal").value);
-const r=parseFloat(document.getElementById("ciRate").value)/100;
-const t=parseFloat(document.getElementById("ciYears").value);
-const n=parseFloat(document.getElementById("ciFrequency").value);
-const currency=document.getElementById("ciCurrency").value;
+function calcCI(){
+let p=document.getElementById('p').value;
+let r=document.getElementById('r').value/100;
+let t=document.getElementById('t').value;
 
-if(isNaN(P)||isNaN(r)||isNaN(t)||isNaN(n)||P<=0||t<=0){
-alert("Enter valid values");
-return;
+let A=p*Math.pow((1+r),t);
+let interest=A-p;
+
+data={p,r,t,A,interest};
+
+document.getElementById('result').style.display="block";
+document.getElementById('pdfBtn').style.display="inline-block";
+
+document.getElementById('result').innerHTML=
+`Total Amount: ₹ ${A.toFixed(2)} <br>Interest: ₹ ${interest.toFixed(2)}`;
 }
 
-const A=P*Math.pow((1+r/n),(n*t));
-const interest=A-P;
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc=new jsPDF();
 
-const result=document.getElementById("ciResult");
-result.style.display="block";
-result.innerHTML=
-"<strong>Final Amount:</strong> "+currency+A.toFixed(2)+"<br>"+
-"<strong>Total Interest Earned:</strong> "+currency+interest.toFixed(2);
+doc.text("Compound Interest Report",20,20);
+doc.text(`Principal: ₹ ${data.p}`,20,40);
+doc.text(`Interest: ₹ ${data.interest.toFixed(2)}`,20,60);
+doc.text(`Total: ₹ ${data.A.toFixed(2)}`,20,80);
 
-if(ciChartInstance){ciChartInstance.destroy();}
-
-ciChartInstance=new Chart(document.getElementById("ciChart"),{
-type:"doughnut",
-data:{
-labels:["Principal","Interest"],
-datasets:[{
-data:[P,interest],
-backgroundColor:["#2563eb","#10b981"]
-}]
+doc.save("compound-report.pdf");
 }
-});
-}
+
 </script>
 
 </body>
