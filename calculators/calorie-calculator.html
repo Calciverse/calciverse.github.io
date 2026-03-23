@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Calorie Calculator - Daily Calorie Needs | Calciverse</title>
+
+<meta name="description" content="Calculate your daily calorie requirement based on age, weight, height and activity level. Free calorie calculator.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
+
+<style>
+.calc-box{
+background:#fff;
+padding:30px;
+border-radius:16px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+max-width:800px;
+margin:auto;
+}
+.calc-box input, .calc-box select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+.result-box{
+margin-top:20px;
+padding:20px;
+background:#ecfdf5;
+border-left:5px solid #22c55e;
+border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Calorie Calculator</h1>
+<p>Estimate your daily calorie needs based on your body and activity.</p>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+
+<label>Gender</label>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+
+<label>Age</label>
+<input type="number" id="age">
+
+<label>Weight (kg)</label>
+<input type="number" id="weight">
+
+<label>Height (cm)</label>
+<input type="number" id="height">
+
+<label>Activity Level</label>
+<select id="activity">
+<option value="1.2">Sedentary</option>
+<option value="1.375">Lightly Active</option>
+<option value="1.55">Moderately Active</option>
+<option value="1.725">Very Active</option>
+<option value="1.9">Super Active</option>
+</select>
+
+<button class="card-btn" onclick="calculateCalories()">Calculate</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+
+</div>
+
+</div>
+</section>
+
+<!-- AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO -->
+<section class="seo-content">
+<div class="container">
+
+<h2>What is a Calorie Calculator?</h2>
+<p>This calculator estimates how many calories you need per day to maintain your current weight.</p>
+
+<h2>How Calories are Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>We use the Mifflin-St Jeor equation along with activity multiplier.</p>
+
+<h2>Why Calories Matter?</h2>
+<ul>
+<li>Maintain weight</li>
+<li>Lose fat</li>
+<li>Build muscle</li>
+<li>Improve health</li>
+</ul>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>BMI Calculator</h3>
+<a href="bmi-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Ideal Weight</h3>
+<a href="ideal-weight-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+</div>
+</footer>
+
+<script>
+
+let calorieData = {};
+
+function calculateCalories(){
+
+let gender = document.getElementById('gender').value;
+let age = +document.getElementById('age').value;
+let weight = +document.getElementById('weight').value;
+let height = +document.getElementById('height').value;
+let activity = +document.getElementById('activity').value;
+
+let bmr;
+
+if(gender === "male"){
+bmr = 10*weight + 6.25*height - 5*age + 5;
+}else{
+bmr = 10*weight + 6.25*height - 5*age - 161;
+}
+
+let calories = bmr * activity;
+
+calorieData = {calories};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML =
+`Daily Calories: <b>${Math.round(calories)}</b> kcal`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+doc.text("Calorie Report - Calciverse",20,20);
+doc.text(`Daily Calories: ${Math.round(calorieData.calories)} kcal`,20,40);
+
+doc.save("calorie-report.pdf");
+}
+
+</script>
+
+</body>
+</html>
