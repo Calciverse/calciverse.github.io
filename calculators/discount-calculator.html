@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Discount Calculator | Calciverse</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"></script>
+
+<style>
+.calc-box{background:#fff;padding:30px;border-radius:16px;max-width:800px;margin:auto;}
+.result-box{margin-top:20px;padding:20px;background:#ecfdf5;}
+</style>
+</head>
+
+<body>
+
+<header class="navbar"><div class="container">Calciverse</div></header>
+
+<section class="hero"><h1>Discount Calculator</h1></section>
+
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+<input type="number" id="price" placeholder="Original Price">
+<input type="number" id="discount" placeholder="Discount %">
+
+<button onclick="calc()">Calculate</button>
+
+<div id="result" class="result-box" style="display:none;"></div>
+
+<button onclick="downloadPDF()" id="pdfBtn" style="display:none;">Download</button>
+</div>
+
+</div>
+</section>
+
+<script>
+let data={};
+
+function calc(){
+let price=+document.getElementById('price').value;
+let d=+document.getElementById('discount').value;
+
+let disc=price*d/100;
+let final=price-disc;
+
+data={price,d,disc,final};
+
+result.style.display="block";
+pdfBtn.style.display="block";
+result.innerHTML=`Discount: ₹${disc}<br>Final Price: ₹${final}`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc=new jsPDF();
+doc.text(`Final Price: ${data.final}`,20,20);
+doc.save("discount.pdf");
+}
+</script>
+
+</body>
+</html>
