@@ -2,67 +2,236 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Percentage Calculator | Calciverse</title>
+<title>Percentage Calculator - Calculate Percentage Easily | Calciverse</title>
+
+<meta name="description" content="Calculate percentages, increase, decrease and results instantly with our free percentage calculator.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../css/style.css">
 
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"></script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
 
 <style>
-.calc-box{background:#fff;padding:30px;border-radius:16px;max-width:800px;margin:auto;}
-.result-box{margin-top:20px;padding:20px;background:#ecfdf5;}
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
+}
+.calc-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+}
+.download-btn{
+    margin-top:15px;
+}
 </style>
+
 </head>
 
 <body>
 
-<header class="navbar"><div class="container">Calciverse</div></header>
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
 
-<section class="hero"><h1>Percentage Calculator</h1></section>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Percentage Calculator</h1>
+<p>Calculate percentage, increase and decrease instantly.</p>
+</div>
+</section>
 
+<!-- CALCULATOR -->
 <section class="categories">
 <div class="container">
 
 <div class="calc-box">
-<input type="number" id="value" placeholder="Value">
-<input type="number" id="percent" placeholder="Percentage">
 
-<button onclick="calc()">Calculate</button>
+<label>Value</label>
+<input type="number" id="value">
 
-<div id="result" class="result-box" style="display:none;"></div>
+<label>Percentage (%)</label>
+<input type="number" id="percent">
 
-<button onclick="downloadPDF()" id="pdfBtn" style="display:none;">Download</button>
+<button class="card-btn" onclick="calculatePercent()">Calculate</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
+
 </div>
 
 </div>
 </section>
 
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO -->
+<section class="seo-content">
+<div class="container">
+
+<h2>What is Percentage?</h2>
+<p>Percentage is a way to express a number as a fraction of 100. It is widely used in finance, business, and everyday calculations.</p>
+
+<h2>How Percentage is Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>To calculate percentage, multiply the value by the percentage and divide by 100.</p>
+
+<h2>Formula</h2>
+<p><b>Result = (Value × Percentage) / 100</b></p>
+
+<h2>Example</h2>
+<p>If you want to find 20% of ₹500, the result will be ₹100.</p>
+
+<h2>Uses of Percentage</h2>
+<ul>
+<li>Discount calculations</li>
+<li>Profit & loss</li>
+<li>Marks and grading</li>
+<li>Financial analysis</li>
+</ul>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Discount Calculator</h3>
+<p>Calculate discounts easily.</p>
+<a href="discount-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Simple Interest</h3>
+<p>Calculate interest.</p>
+<a href="simple-interest-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>BMI Calculator</h3>
+<p>Check body index.</p>
+<a href="bmi-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
+</div>
+</footer>
+
 <script>
-let data={};
 
-function calc(){
-let v=+value.value;
-let p=+percent.value;
+let percentData = {};
 
-let res=(v*p)/100;
+function calculatePercent(){
 
-data={v,p,res};
+let value = parseFloat(document.getElementById('value').value);
+let percent = parseFloat(document.getElementById('percent').value);
 
-result.style.display="block";
-pdfBtn.style.display="block";
-result.innerHTML=`Result: ${res}`;
+let result = (value * percent) / 100;
+
+percentData = {value, percent, result};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Result:</b> ${result.toFixed(2)}
+`;
 }
 
 function downloadPDF(){
 const { jsPDF } = window.jspdf;
-let doc=new jsPDF();
-doc.text(`Result: ${data.res}`,20,20);
-doc.save("percentage.pdf");
+let doc = new jsPDF();
+
+doc.text("Percentage Report - Calciverse",20,20);
+doc.text(`Value: ${percentData.value}`,20,40);
+doc.text(`Percentage: ${percentData.percent}%`,20,60);
+doc.text(`Result: ${percentData.result}`,20,80);
+
+doc.save("percentage-report.pdf");
 }
+
 </script>
 
 </body>
