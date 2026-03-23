@@ -4,26 +4,55 @@
 <meta charset="UTF-8">
 <title>Compound Interest Calculator | Calciverse</title>
 
-<meta name="description" content="Calculate compound interest, total investment value and earnings instantly.">
+<meta name="description" content="Calculate compound interest, total amount and earnings instantly with our free calculator.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../css/style.css">
 
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!-- AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
 crossorigin="anonymous"></script>
 
 <style>
-.calc-box{background:#fff;padding:30px;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.08);max-width:800px;margin:auto;}
-.calc-box input{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ddd;}
-.result-box{margin-top:20px;padding:20px;background:#ecfdf5;border-left:5px solid #22c55e;border-radius:10px;}
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
+}
+
+.calc-box input, .calc-box select{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+}
+
+.download-btn{
+    margin-top:15px;
+}
 </style>
+
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <header class="navbar">
 <div class="container nav-content">
 <div class="logo">Calciverse</div>
@@ -36,19 +65,21 @@ crossorigin="anonymous"></script>
 </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
 <div class="container">
 <h1>Compound Interest Calculator</h1>
-<p>Calculate investment growth with compound interest.</p>
+<p>Calculate investment growth and earnings using compound interest.</p>
 </div>
 </section>
 
+<!-- CALCULATOR -->
 <section class="categories">
 <div class="container">
 
 <div class="calc-box">
 
-<label>Principal (₹)</label>
+<label>Principal Amount (₹)</label>
 <input type="number" id="p">
 
 <label>Interest Rate (%)</label>
@@ -57,11 +88,21 @@ crossorigin="anonymous"></script>
 <label>Time (Years)</label>
 <input type="number" id="t">
 
-<button class="card-btn" onclick="calcCI()">Calculate</button>
+<label>Compounding Frequency</label>
+<select id="n">
+<option value="1">Yearly</option>
+<option value="2">Half-Yearly</option>
+<option value="4">Quarterly</option>
+<option value="12">Monthly</option>
+</select>
+
+<button class="card-btn" onclick="calculateCI()">Calculate</button>
 
 <div class="result-box" id="result" style="display:none;"></div>
 
-<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
 
 </div>
 
@@ -70,48 +111,96 @@ crossorigin="anonymous"></script>
 
 <!-- AD 1 -->
 <div class="container" style="margin:40px auto;">
-<ins class="adsbygoogle" style="display:block"
+<ins class="adsbygoogle"
+style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
+<!-- SEO CONTENT -->
 <section class="seo-content">
 <div class="container">
 
 <h2>What is Compound Interest?</h2>
-<p>Compound interest is calculated on both the principal and accumulated interest.</p>
+<p>Compound interest is interest calculated on the initial principal and also on the accumulated interest over previous periods. It helps your investment grow faster compared to simple interest.</p>
 
-<h2>Formula</h2>
-<p><b>A = P(1 + r/n)^(nt)</b></p>
+<h2>How Compound Interest is Calculated?</h2>
 
 <div style="margin:20px 0;">
-<ins class="adsbygoogle" style="display:block"
+<ins class="adsbygoogle"
+style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-<h2>Benefits</h2>
+<p>Compound interest depends on principal amount, rate, time and compounding frequency.</p>
+
+<h2>Formula</h2>
+<p><b>A = P (1 + r/n)^(n × t)</b></p>
+
+<h2>Example</h2>
+<p>If you invest ₹10,000 at 8% interest for 5 years compounded yearly, your total amount will grow significantly.</p>
+
+<h2>Benefits of Compound Interest</h2>
 <ul>
-<li>Investment growth</li>
-<li>Better returns</li>
-<li>Financial planning</li>
+<li>Faster wealth growth</li>
+<li>Better long-term returns</li>
+<li>Power of compounding</li>
+<li>Ideal for investments</li>
 </ul>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>SIP Calculator</h3>
+<p>Calculate SIP returns.</p>
+<a href="sip-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>FD Calculator</h3>
+<p>Calculate FD returns.</p>
+<a href="fd-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>PPF Calculator</h3>
+<p>Estimate PPF maturity.</p>
+<a href="ppf-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
 
 </div>
 </section>
 
 <!-- BOTTOM AD -->
 <div class="container" style="margin:40px auto;">
-<ins class="adsbygoogle" style="display:block"
+<ins class="adsbygoogle"
+style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
+<!-- FOOTER -->
 <footer class="footer">
 <div class="container">
+
 <p>© 2026 Calciverse. All Rights Reserved.</p>
 
 <div class="footer-links">
@@ -126,35 +215,39 @@ data-ad-slot="1234567890"></ins>
 
 <script>
 
-let data={};
+let ciData = {};
 
-function calcCI(){
-let p=document.getElementById('p').value;
-let r=document.getElementById('r').value/100;
-let t=document.getElementById('t').value;
+function calculateCI(){
 
-let A=p*Math.pow((1+r),t);
-let interest=A-p;
+let P = parseFloat(document.getElementById('p').value);
+let r = parseFloat(document.getElementById('r').value) / 100;
+let t = parseFloat(document.getElementById('t').value);
+let n = parseFloat(document.getElementById('n').value);
 
-data={p,r,t,A,interest};
+let A = P * Math.pow((1 + r/n), (n * t));
+let interest = A - P;
 
-document.getElementById('result').style.display="block";
-document.getElementById('pdfBtn').style.display="inline-block";
+ciData = {P, r, t, n, A, interest};
 
-document.getElementById('result').innerHTML=
-`Total Amount: ₹ ${A.toFixed(2)} <br>Interest: ₹ ${interest.toFixed(2)}`;
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Total Amount:</b> ₹ ${A.toFixed(2)} <br>
+<b>Interest Earned:</b> ₹ ${interest.toFixed(2)}
+`;
 }
 
 function downloadPDF(){
 const { jsPDF } = window.jspdf;
-let doc=new jsPDF();
+let doc = new jsPDF();
 
-doc.text("Compound Interest Report",20,20);
-doc.text(`Principal: ₹ ${data.p}`,20,40);
-doc.text(`Interest: ₹ ${data.interest.toFixed(2)}`,20,60);
-doc.text(`Total: ₹ ${data.A.toFixed(2)}`,20,80);
+doc.text("Compound Interest Report - Calciverse",20,20);
+doc.text(`Principal: ₹ ${ciData.P}`,20,40);
+doc.text(`Interest: ₹ ${ciData.interest.toFixed(2)}`,20,60);
+doc.text(`Total Amount: ₹ ${ciData.A.toFixed(2)}`,20,80);
 
-doc.save("compound-report.pdf");
+doc.save("compound-interest-report.pdf");
 }
 
 </script>
