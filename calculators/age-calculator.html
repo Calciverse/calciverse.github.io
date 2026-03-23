@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Age Calculator - Calculate Your Exact Age | Calciverse</title>
+
+<meta name="description" content="Calculate your exact age in years, months and days instantly with our free age calculator.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
+
+<style>
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
+}
+
+.calc-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+}
+
+.download-btn{
+    margin-top:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Age Calculator</h1>
+<p>Calculate your exact age in years, months and days.</p>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+
+<label>Date of Birth</label>
+<input type="date" id="dob">
+
+<label>Current Date</label>
+<input type="date" id="today">
+
+<button class="card-btn" onclick="calculateAge()">Calculate Age</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
+
+</div>
+
+</div>
+</section>
+
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO -->
+<section class="seo-content">
+<div class="container">
+
+<h2>What is Age Calculator?</h2>
+<p>An age calculator helps you determine your exact age from your date of birth to the current date.</p>
+
+<h2>How Age is Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>It calculates the difference between your birth date and the current date in years, months and days.</p>
+
+<h2>Why Use Age Calculator?</h2>
+<ul>
+<li>Know your exact age</li>
+<li>Useful for forms and documents</li>
+<li>Quick and accurate results</li>
+</ul>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>BMI Calculator</h3>
+<p>Check body mass index.</p>
+<a href="bmi-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Percentage Calculator</h3>
+<p>Calculate percentages easily.</p>
+<a href="percentage-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Discount Calculator</h3>
+<p>Find discounts quickly.</p>
+<a href="discount-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
+</div>
+</footer>
+
+<script>
+
+let ageData = {};
+
+function calculateAge(){
+
+let dob = new Date(document.getElementById('dob').value);
+let today = new Date(document.getElementById('today').value);
+
+if(!dob || !today){
+alert("Please select valid dates");
+return;
+}
+
+let years = today.getFullYear() - dob.getFullYear();
+let months = today.getMonth() - dob.getMonth();
+let days = today.getDate() - dob.getDate();
+
+if(days < 0){
+months--;
+days += 30;
+}
+
+if(months < 0){
+years--;
+months += 12;
+}
+
+ageData = {years, months, days};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Age:</b> ${years} Years, ${months} Months, ${days} Days
+`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+doc.text("Age Report - Calciverse",20,20);
+doc.text(`Age: ${ageData.years} Years ${ageData.months} Months ${ageData.days} Days`,20,40);
+
+doc.save("age-report.pdf");
+}
+
+</script>
+
+</body>
+</html>
