@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <title>Ideal Weight Calculator - Find Your Healthy Weight | Calciverse</title>
 
-<meta name="description" content="Calculate your ideal body weight based on height and gender using standard formulas. Free ideal weight calculator.">
+<meta name="description" content="Calculate your ideal body weight based on height and gender using standard formulas. Accurate and free tool.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
 crossorigin="anonymous"></script>
 
@@ -26,19 +24,37 @@ box-shadow:0 15px 40px rgba(0,0,0,0.08);
 max-width:800px;
 margin:auto;
 }
-.calc-box input, .calc-box select{
+.calc-box input,.calc-box select{
 width:100%;
 padding:12px;
 margin-bottom:15px;
 border-radius:8px;
 border:1px solid #ddd;
 }
+
+.btn-main{
+background:#22c55e;
+padding:12px 18px;
+border:none;
+color:#fff;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+}
+
 .result-box{
 margin-top:20px;
-padding:20px;
+padding:25px;
 background:#ecfdf5;
-border-left:5px solid #22c55e;
+border-left:6px solid #22c55e;
 border-radius:10px;
+font-size:16px;
+}
+
+.highlight{
+font-size:20px;
+font-weight:bold;
+color:#16a34a;
 }
 </style>
 
@@ -46,7 +62,6 @@ border-radius:10px;
 
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
 <div class="container nav-content">
 <div class="logo">Calciverse</div>
@@ -59,7 +74,6 @@ border-radius:10px;
 </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
 <div class="container">
 <h1>Ideal Weight Calculator</h1>
@@ -67,7 +81,6 @@ border-radius:10px;
 </div>
 </section>
 
-<!-- CALCULATOR -->
 <section class="categories">
 <div class="container">
 
@@ -82,34 +95,36 @@ border-radius:10px;
 <label>Height (cm)</label>
 <input type="number" id="height">
 
-<button class="card-btn" onclick="calculateWeight()">Calculate</button>
+<button class="btn-main" onclick="calculateWeight()">Calculate Ideal Weight</button>
 
 <div class="result-box" id="result" style="display:none;"></div>
 
-<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+<button class="btn-main" id="pdfBtn" onclick="downloadPDF()" style="display:none;margin-top:15px;">
+Download Report
+</button>
 
 </div>
 
 </div>
 </section>
 
-<!-- AD 1 -->
+<!-- AD TOP -->
 <div class="container" style="margin:40px auto;">
 <ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-<!-- SEO -->
 <section class="seo-content">
 <div class="container">
 
 <h2>What is Ideal Weight?</h2>
-<p>Ideal body weight is an estimate of the healthiest weight based on height and gender. It helps maintain overall health and fitness.</p>
+<p>Ideal weight is an estimate of the healthiest body weight based on your height and gender. It helps you maintain a balanced and healthy lifestyle.</p>
 
-<h2>How is Ideal Weight Calculated?</h2>
+<h2>How Ideal Weight is Calculated?</h2>
 
 <div style="margin:20px 0;">
 <ins class="adsbygoogle"
@@ -119,24 +134,30 @@ data-ad-slot="1234567890"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-<p>This calculator uses the Devine formula to estimate ideal body weight.</p>
+<p>This calculator uses the Devine formula, which is widely accepted for estimating healthy body weight.</p>
 
 <h2>Formula</h2>
-<p><b>Male: 50 + 0.9 × (height in cm − 152)</b></p>
-<p><b>Female: 45.5 + 0.9 × (height in cm − 152)</b></p>
+<p><b>Male: 50 + 0.9 × (height − 152)</b></p>
+<p><b>Female: 45.5 + 0.9 × (height − 152)</b></p>
 
 <h2>Why Ideal Weight Matters?</h2>
 <ul>
-<li>Better health</li>
+<li>Better overall health</li>
 <li>Reduced disease risk</li>
 <li>Improved fitness</li>
 <li>Balanced lifestyle</li>
 </ul>
 
+<h2>Tips to Maintain Ideal Weight</h2>
+<ul>
+<li>Eat balanced diet</li>
+<li>Exercise regularly</li>
+<li>Stay consistent</li>
+</ul>
+
 </div>
 </section>
 
-<!-- RELATED -->
 <section class="categories">
 <div class="container">
 <h2>Related Calculators</h2>
@@ -158,16 +179,16 @@ data-ad-slot="1234567890"></ins>
 </div>
 </section>
 
-<!-- BOTTOM AD -->
+<!-- AD BOTTOM -->
 <div class="container" style="margin:40px auto;">
 <ins class="adsbygoogle"
 style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-<!-- FOOTER -->
 <footer class="footer">
 <div class="container">
 <p>© 2026 Calciverse. All Rights Reserved.</p>
@@ -202,8 +223,10 @@ weightData = {ideal};
 document.getElementById('result').style.display = "block";
 document.getElementById('pdfBtn').style.display = "inline-block";
 
-document.getElementById('result').innerHTML =
-`Ideal Weight: <b>${ideal.toFixed(1)} kg</b>`;
+document.getElementById('result').innerHTML = `
+<span class="highlight">${ideal.toFixed(1)} kg</span><br><br>
+Healthy Range: ${(ideal-5).toFixed(1)} kg - ${(ideal+5).toFixed(1)} kg
+`;
 }
 
 function downloadPDF(){
