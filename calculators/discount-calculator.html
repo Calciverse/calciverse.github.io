@@ -2,68 +2,246 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Discount Calculator | Calciverse</title>
+<title>Discount Calculator - Calculate Price After Discount | Calciverse</title>
+
+<meta name="description" content="Calculate discount amount, final price and savings instantly with our free discount calculator.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../css/style.css">
 
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"></script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
 
 <style>
-.calc-box{background:#fff;padding:30px;border-radius:16px;max-width:800px;margin:auto;}
-.result-box{margin-top:20px;padding:20px;background:#ecfdf5;}
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
+}
+.calc-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+}
+.download-btn{
+    margin-top:15px;
+}
+.highlight{
+    font-size:18px;
+    font-weight:bold;
+    color:#16a34a;
+}
 </style>
+
 </head>
 
 <body>
 
-<header class="navbar"><div class="container">Calciverse</div></header>
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
 
-<section class="hero"><h1>Discount Calculator</h1></section>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Discount Calculator</h1>
+<p>Calculate discount amount, final price and savings instantly.</p>
+</div>
+</section>
 
+<!-- CALCULATOR -->
 <section class="categories">
 <div class="container">
 
 <div class="calc-box">
-<input type="number" id="price" placeholder="Original Price">
-<input type="number" id="discount" placeholder="Discount %">
 
-<button onclick="calc()">Calculate</button>
+<label>Original Price (₹)</label>
+<input type="number" id="price">
 
-<div id="result" class="result-box" style="display:none;"></div>
+<label>Discount (%)</label>
+<input type="number" id="discount">
 
-<button onclick="downloadPDF()" id="pdfBtn" style="display:none;">Download</button>
+<button class="card-btn" onclick="calculateDiscount()">Calculate</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
+
 </div>
 
 </div>
 </section>
 
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO -->
+<section class="seo-content">
+<div class="container">
+
+<h2>What is Discount?</h2>
+<p>A discount is a reduction in the original price of a product or service. It is commonly used in sales, promotions and offers.</p>
+
+<h2>How Discount is Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>Discount is calculated by multiplying the original price by the discount percentage.</p>
+
+<h2>Formula</h2>
+<p><b>Discount = (Price × Discount%) / 100</b></p>
+<p><b>Final Price = Price - Discount</b></p>
+
+<h2>Example</h2>
+<p>If a product costs ₹1000 and has a 20% discount, the discount is ₹200 and final price is ₹800.</p>
+
+<h2>Benefits of Using Discount Calculator</h2>
+<ul>
+<li>Quick savings calculation</li>
+<li>Better shopping decisions</li>
+<li>Accurate results</li>
+<li>Time-saving tool</li>
+</ul>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Percentage Calculator</h3>
+<p>Calculate percentages easily.</p>
+<a href="percentage-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>GST Calculator</h3>
+<p>Calculate GST instantly.</p>
+<a href="gst-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Simple Interest</h3>
+<p>Calculate interest quickly.</p>
+<a href="simple-interest-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
+</div>
+</footer>
+
 <script>
-let data={};
 
-function calc(){
-let price=+document.getElementById('price').value;
-let d=+document.getElementById('discount').value;
+let discountData = {};
 
-let disc=price*d/100;
-let final=price-disc;
+function calculateDiscount(){
 
-data={price,d,disc,final};
+let price = parseFloat(document.getElementById('price').value);
+let discount = parseFloat(document.getElementById('discount').value);
 
-result.style.display="block";
-pdfBtn.style.display="block";
-result.innerHTML=`Discount: ₹${disc}<br>Final Price: ₹${final}`;
+let discountAmount = (price * discount) / 100;
+let finalPrice = price - discountAmount;
+
+discountData = {price, discount, discountAmount, finalPrice};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Discount Amount:</b> ₹ ${discountAmount.toFixed(2)} <br>
+<b>Final Price:</b> ₹ ${finalPrice.toFixed(2)} <br>
+<span class="highlight">You Save ₹ ${discountAmount.toFixed(2)}</span>
+`;
 }
 
 function downloadPDF(){
 const { jsPDF } = window.jspdf;
-let doc=new jsPDF();
-doc.text(`Final Price: ${data.final}`,20,20);
-doc.save("discount.pdf");
+let doc = new jsPDF();
+
+doc.text("Discount Report - Calciverse",20,20);
+doc.text(`Original Price: ₹ ${discountData.price}`,20,40);
+doc.text(`Discount: ${discountData.discount}%`,20,60);
+doc.text(`Savings: ₹ ${discountData.discountAmount}`,20,80);
+doc.text(`Final Price: ₹ ${discountData.finalPrice}`,20,100);
+
+doc.save("discount-report.pdf");
 }
+
 </script>
 
 </body>
