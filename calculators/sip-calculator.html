@@ -2,252 +2,248 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>SIP Calculator - Systematic Investment Plan Calculator | Calciverse</title>
+
+<meta name="description" content="Calculate SIP returns, total investment and wealth gained instantly with our free SIP calculator.">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SIP Calculator – Mutual Fund Returns & Maturity Value | Calciverse</title>
+<link rel="stylesheet" href="../css/style.css">
 
-<meta name="description" content="Free SIP Calculator to estimate mutual fund returns, total investment and maturity value instantly. Calculate monthly SIP growth with compounding.">
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<meta name="keywords" content="SIP calculator, mutual fund calculator, systematic investment plan calculator, SIP maturity calculator India">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/sip-calculator.html">
-
-<meta property="og:title" content="SIP Calculator – Estimate Mutual Fund Returns">
-<meta property="og:description" content="Calculate your monthly SIP returns and maturity amount instantly.">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebApplication",
- "name": "SIP Calculator",
- "applicationCategory": "FinanceApplication",
- "operatingSystem": "All"
-}
-</script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#f4f6fb;color:#1e293b;}
-
-header{
-display:flex;justify-content:space-between;
-padding:18px 8%;background:#fff;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
 }
-.logo{font-size:20px;font-weight:700;color:#2563eb;}
-nav a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #0F172A;
-    font-weight: 500;
-    transition: 0.3s;
+.calc-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
 }
-
-nav a:hover {
-    color: #2563EB;
-}
-
-.hero{
-background:linear-gradient(135deg,#2563eb,#4f46e5);
-color:#fff;text-align:center;padding:60px 20px;
-}
-.hero h1{font-size:32px;margin-bottom:10px;}
-
-.ad-slot{
-max-width:1000px;margin:25px auto;
-padding:20px;text-align:center;
-background:#eef2ff;border-radius:12px;
-}
-
-.container{max-width:1000px;margin:auto;padding:40px 20px;}
-
-.card{
-background:#fff;padding:30px;
-border-radius:16px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-max-width:700px;margin:auto;
-}
-
-label{font-weight:600;font-size:14px;margin-bottom:6px;display:block;}
-input,select{
-width:100%;padding:12px;
-border-radius:10px;border:1px solid #e2e8f0;
-margin-bottom:18px;
-}
-
-button{
-width:100%;padding:14px;
-background:#2563eb;color:#fff;
-border:none;border-radius:12px;
-font-weight:600;cursor:pointer;
-}
-button:hover{background:#1d4ed8;}
-
 .result-box{
-margin-top:20px;padding:20px;
-background:#ecfdf5;
-border-left:5px solid #10b981;
-border-radius:12px;
-display:none;
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
 }
-
-canvas{ margin-top:30px; max-height:260px; }
-
-.seo-section{
-max-width:1000px;margin:60px auto;
-padding:0 20px;line-height:1.8;
-color:#475569;
-}
-
-.footer {
-    background: #0F172A;
-    color: white;
-    padding: 30px 0;
-    text-align: center;
-}
-
-.footer-links {
-    margin-top: 10px;
-}
-
-.footer-links a {
-    color: #CBD5E1;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: white;
+.download-btn{
+    margin-top:15px;
 }
 </style>
+
 </head>
 
 <body>
 
-<header>
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
 <div class="logo">Calciverse</div>
 <nav>
-            <a href="../index.html">Home</a>
-            <a href="index.html">Calculators</a>
-            <a href="../about.html">About</a>
- <a href="../contact.html">Contact</a>
-        </nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
+<div class="container">
 <h1>SIP Calculator</h1>
-<p>Estimate your mutual fund investment growth with systematic monthly investments.</p>
+<p>Calculate SIP returns, total investment and wealth gained instantly.</p>
+</div>
 </section>
 
-<div class="ad-slot">Top Ad Space</div>
-
+<!-- CALCULATOR -->
+<section class="categories">
 <div class="container">
-<div class="card">
 
-<label>Currency</label>
-<select id="currency">
-<option value="₹">₹ INR</option>
-<option value="$">$ USD</option>
-<option value="€">€ EUR</option>
-</select>
+<div class="calc-box">
 
-<label>Monthly Investment</label>
-<input type="number" id="monthlyInvestment" placeholder="Enter monthly amount">
+<label>Monthly Investment (₹)</label>
+<input type="number" id="monthly">
 
-<label>Expected Annual Return (%)</label>
-<input type="number" id="rate" placeholder="Enter expected return">
+<label>Expected Return Rate (%)</label>
+<input type="number" id="rate">
 
-<label>Investment Period (Years)</label>
-<input type="number" id="years" placeholder="Enter years">
+<label>Time Period (Years)</label>
+<input type="number" id="years">
 
-<button onclick="calculateSIP()">Calculate Growth</button>
+<button class="card-btn" onclick="calculateSIP()">Calculate SIP</button>
 
-<div id="result" class="result-box"></div>
-<canvas id="sipChart"></canvas>
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
 
 </div>
+
 </div>
+</section>
 
-<div class="ad-slot">Bottom Ad Space</div>
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-<section class="seo-section">
+<!-- SEO CONTENT -->
+<section class="seo-content">
+<div class="container">
 
 <h2>What is SIP?</h2>
-<p>SIP (Systematic Investment Plan) allows investors to invest a fixed amount monthly in mutual funds. It benefits from rupee cost averaging and compounding growth.</p>
+<p>SIP (Systematic Investment Plan) allows you to invest a fixed amount regularly in mutual funds. It helps in disciplined investing and wealth creation over time.</p>
+
+<h2>How SIP Returns are Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>SIP returns are calculated using compound interest formula considering monthly investments and expected returns.</p>
 
 <h2>SIP Formula</h2>
-<p><strong>M = P × ((1 + r)^n − 1) × (1 + r) / r</strong></p>
+<p><b>M = P × [(1 + r)^n - 1] / r × (1 + r)</b></p>
 
-<h2>Benefits of SIP Investment</h2>
+<h2>Example</h2>
+<p>If you invest ₹5,000 monthly at 12% annual return for 5 years, your investment grows significantly due to compounding.</p>
+
+<h2>Benefits of SIP</h2>
 <ul>
 <li>Disciplined investing</li>
-<li>Compounding returns</li>
+<li>Power of compounding</li>
+<li>Flexible investment</li>
 <li>Long-term wealth creation</li>
 </ul>
 
-<p>Also try our <a href="compound-interest-calculator.html">Compound Interest Calculator</a>.</p>
-
+</div>
 </section>
 
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>FD Calculator</h3>
+<p>Calculate fixed deposit returns.</p>
+<a href="fd-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>PPF Calculator</h3>
+<p>Estimate PPF maturity.</p>
+<a href="ppf-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>EMI Calculator</h3>
+<p>Calculate EMI instantly.</p>
+<a href="emi-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
 <footer class="footer">
-    <div class="container">
-        <p>© 2026 Calciverse. All Rights Reserved.</p>
-        <div class="footer-links">
-            <a href="../about.html">About</a>
-            <a href="../privacy-policy.html">Privacy Policy</a>
-            <a href="../terms.html">Terms</a>
-         <a href="../contact.html">Contact</a>
-        </div>.
+<div class="container">
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
+</div>
 </footer>
 
 <script>
-let sipChartInstance=null;
+
+let sipData = {};
 
 function calculateSIP(){
 
-const P=parseFloat(document.getElementById("monthlyInvestment").value);
-const annual=parseFloat(document.getElementById("rate").value);
-const years=parseFloat(document.getElementById("years").value);
-const currency=document.getElementById("currency").value;
+let P = parseFloat(document.getElementById('monthly').value);
+let annualRate = parseFloat(document.getElementById('rate').value);
+let years = parseFloat(document.getElementById('years').value);
 
-if(isNaN(P)||isNaN(annual)||isNaN(years)||P<=0||years<=0){
-alert("Enter valid values");
-return;
+let r = annualRate / 12 / 100;
+let n = years * 12;
+
+let M = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+let invested = P * n;
+let returns = M - invested;
+
+sipData = {P, annualRate, years, M, invested, returns};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Total Investment:</b> ₹ ${invested.toFixed(2)} <br>
+<b>Estimated Returns:</b> ₹ ${returns.toFixed(2)} <br>
+<b>Total Value:</b> ₹ ${M.toFixed(2)}
+`;
 }
 
-const r=annual/100/12;
-const n=years*12;
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
 
-const maturity=P*((Math.pow(1+r,n)-1)/r)*(1+r);
-const invested=P*n;
-const returns=maturity-invested;
+doc.text("SIP Report - Calciverse",20,20);
+doc.text(`Monthly Investment: ₹ ${sipData.P}`,20,40);
+doc.text(`Total Investment: ₹ ${sipData.invested.toFixed(2)}`,20,60);
+doc.text(`Returns: ₹ ${sipData.returns.toFixed(2)}`,20,80);
+doc.text(`Total Value: ₹ ${sipData.M.toFixed(2)}`,20,100);
 
-const result=document.getElementById("result");
-result.style.display="block";
-result.innerHTML=
-"<strong>Total Invested:</strong> "+currency+invested.toFixed(2)+"<br>"+
-"<strong>Estimated Returns:</strong> "+currency+returns.toFixed(2)+"<br>"+
-"<strong>Maturity Value:</strong> "+currency+maturity.toFixed(2);
-
-if(sipChartInstance){sipChartInstance.destroy();}
-
-sipChartInstance=new Chart(document.getElementById("sipChart"),{
-type:"doughnut",
-data:{
-labels:["Invested","Returns"],
-datasets:[{
-data:[invested,returns],
-backgroundColor:["#2563eb","#10b981"]
-}]
+doc.save("sip-report.pdf");
 }
-});
-}
+
 </script>
 
 </body>
