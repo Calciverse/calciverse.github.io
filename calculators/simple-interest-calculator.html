@@ -2,25 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Simple Interest Calculator | Calciverse</title>
-<meta name="description" content="Calculate simple interest and total amount instantly.">
+<title>Simple Interest Calculator - Calculate Interest Online | Calciverse</title>
+
+<meta name="description" content="Calculate simple interest, total amount and yearly breakdown instantly using our free simple interest calculator.">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../css/style.css">
 
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"></script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
 
 <style>
-.calc-box{background:#fff;padding:30px;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.08);max-width:800px;margin:auto;}
-.calc-box input{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ddd;}
-.result-box{margin-top:20px;padding:20px;background:#ecfdf5;border-left:5px solid #22c55e;border-radius:10px;}
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
+}
+.calc-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+}
+.download-btn{
+    margin-top:15px;
+}
 </style>
+
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <header class="navbar">
 <div class="container nav-content">
 <div class="logo">Calciverse</div>
@@ -33,92 +62,185 @@
 </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
 <div class="container">
 <h1>Simple Interest Calculator</h1>
-<p>Calculate interest and total amount easily.</p>
+<p>Calculate interest, total amount and financial growth instantly.</p>
 </div>
 </section>
 
+<!-- CALCULATOR -->
 <section class="categories">
 <div class="container">
 
 <div class="calc-box">
 
-<input type="number" id="p" placeholder="Principal (₹)">
-<input type="number" id="r" placeholder="Rate (%)">
-<input type="number" id="t" placeholder="Time (Years)">
+<label>Principal Amount (₹)</label>
+<input type="number" id="p">
 
-<button class="card-btn" onclick="calcSI()">Calculate</button>
+<label>Interest Rate (%)</label>
+<input type="number" id="r">
+
+<label>Time (Years)</label>
+<input type="number" id="t">
+
+<button class="card-btn" onclick="calculateSI()">Calculate</button>
 
 <div class="result-box" id="result" style="display:none;"></div>
 
-<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
 
 </div>
 
 </div>
 </section>
 
-<!-- AD -->
+<!-- AD 1 -->
 <div class="container" style="margin:40px auto;">
-<ins class="adsbygoogle" style="display:block"
+<ins class="adsbygoogle"
+style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
+<!-- SEO -->
 <section class="seo-content">
 <div class="container">
+
 <h2>What is Simple Interest?</h2>
-<p>Simple interest is calculated only on the principal amount.</p>
+<p>Simple interest is the interest calculated only on the original principal amount. It does not compound over time, making it easy to calculate and understand.</p>
+
+<h2>How Simple Interest is Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>Simple interest depends on three factors: principal amount, interest rate, and time period.</p>
+
+<h2>Formula</h2>
+<p><b>SI = (P × R × T) / 100</b></p>
+
+<h2>Example</h2>
+<p>If you invest ₹10,000 at 10% interest for 2 years, the interest will be ₹2,000 and total amount ₹12,000.</p>
+
+<h2>Benefits of Simple Interest Calculator</h2>
+<ul>
+<li>Quick and easy calculations</li>
+<li>Accurate financial planning</li>
+<li>Useful for loans and investments</li>
+<li>Beginner-friendly method</li>
+</ul>
+
+<h2>When to Use Simple Interest?</h2>
+<p>Simple interest is commonly used in short-term loans, personal borrowing, and basic financial calculations where compounding is not involved.</p>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Compound Interest</h3>
+<p>Calculate compound growth.</p>
+<a href="compound-interest-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Loan Calculator</h3>
+<p>Estimate loan repayment.</p>
+<a href="loan-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Percentage Calculator</h3>
+<p>Calculate percentages easily.</p>
+<a href="percentage-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
 </div>
 </section>
 
 <!-- BOTTOM AD -->
 <div class="container" style="margin:40px auto;">
-<ins class="adsbygoogle" style="display:block"
+<ins class="adsbygoogle"
+style="display:block"
 data-ad-client="ca-pub-7962014317457914"
-data-ad-slot="1234567890"></ins>
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
+<!-- FOOTER -->
 <footer class="footer">
 <div class="container">
-<p>© 2026 Calciverse</p>
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
 </div>
 </footer>
 
 <script>
-let data={};
 
-function calcSI(){
-let p=+document.getElementById('p').value;
-let r=+document.getElementById('r').value;
-let t=+document.getElementById('t').value;
+let siData = {};
 
-let si=(p*r*t)/100;
-let total=p+si;
+function calculateSI(){
 
-data={p,r,t,si,total};
+let P = parseFloat(document.getElementById('p').value);
+let R = parseFloat(document.getElementById('r').value);
+let T = parseFloat(document.getElementById('t').value);
 
-document.getElementById('result').style.display="block";
-document.getElementById('pdfBtn').style.display="inline-block";
+let SI = (P * R * T) / 100;
+let total = P + SI;
 
-document.getElementById('result').innerHTML=
-`Interest: ₹ ${si.toFixed(2)} <br>Total: ₹ ${total.toFixed(2)}`;
+siData = {P, R, T, SI, total};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Interest:</b> ₹ ${SI.toFixed(2)} <br>
+<b>Total Amount:</b> ₹ ${total.toFixed(2)}
+`;
 }
 
 function downloadPDF(){
 const { jsPDF } = window.jspdf;
-let doc=new jsPDF();
+let doc = new jsPDF();
 
-doc.text("Simple Interest Report",20,20);
-doc.text(`Interest: ₹ ${data.si}`,20,40);
-doc.text(`Total: ₹ ${data.total}`,20,60);
+doc.text("Simple Interest Report - Calciverse",20,20);
+doc.text(`Principal: ₹ ${siData.P}`,20,40);
+doc.text(`Interest: ₹ ${siData.SI.toFixed(2)}`,20,60);
+doc.text(`Total: ₹ ${siData.total.toFixed(2)}`,20,80);
 
-doc.save("simple-interest.pdf");
+doc.save("simple-interest-report.pdf");
 }
+
 </script>
 
 </body>
