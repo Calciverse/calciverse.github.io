@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mutual Fund Calculator - SIP Investment Calculator | Calciverse</title>
+
+<meta name="description" content="Calculate SIP returns, total investment and wealth gained with our free mutual fund calculator.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
+
+<style>
+.calc-box{
+background:#fff;
+padding:30px;
+border-radius:16px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+max-width:800px;
+margin:auto;
+}
+.calc-box input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+.result-box{
+margin-top:20px;
+padding:20px;
+background:#ecfdf5;
+border-left:5px solid #22c55e;
+border-radius:10px;
+}
+.highlight{
+font-size:18px;
+font-weight:bold;
+color:#16a34a;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+<h1>Mutual Fund Calculator (SIP)</h1>
+<p>Calculate your SIP returns, total investment and wealth gained.</p>
+</div>
+</section>
+
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+
+<label>Monthly Investment (₹)</label>
+<input type="number" id="sip">
+
+<label>Expected Return Rate (%)</label>
+<input type="number" id="rate">
+
+<label>Time (Years)</label>
+<input type="number" id="years">
+
+<button class="card-btn" onclick="calculateMF()">Calculate</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+
+</div>
+
+</div>
+</section>
+
+<!-- AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<section class="seo-content">
+<div class="container">
+
+<h2>What is SIP in Mutual Funds?</h2>
+<p>SIP (Systematic Investment Plan) allows you to invest a fixed amount monthly in mutual funds.</p>
+
+<h2>How SIP Returns are Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>This calculator uses compound interest formula applied monthly.</p>
+
+<h2>Benefits of SIP</h2>
+<ul>
+<li>Disciplined investing</li>
+<li>Power of compounding</li>
+<li>Affordable monthly investment</li>
+<li>Long-term wealth creation</li>
+</ul>
+
+</div>
+</section>
+
+<section class="categories">
+<div class="container">
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>SIP Calculator</h3>
+<a href="sip-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>FD Calculator</h3>
+<a href="fd-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>ROI Calculator</h3>
+<a href="roi-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<footer class="footer">
+<div class="container">
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+</div>
+</footer>
+
+<script>
+
+let mfData = {};
+
+function calculateMF(){
+
+let sip = parseFloat(document.getElementById('sip').value);
+let rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+let months = parseFloat(document.getElementById('years').value) * 12;
+
+let futureValue = sip * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
+
+let invested = sip * months;
+let gain = futureValue - invested;
+
+mfData = {sip, invested, futureValue, gain};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Total Investment:</b> ₹ ${invested.toFixed(0)} <br>
+<b>Wealth Gained:</b> ₹ ${gain.toFixed(0)} <br>
+<span class="highlight">Total Value: ₹ ${futureValue.toFixed(0)}</span>
+`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+doc.text("Mutual Fund Report - Calciverse",20,20);
+doc.text(`Investment: ₹ ${mfData.invested}`,20,40);
+doc.text(`Gain: ₹ ${mfData.gain}`,20,60);
+doc.text(`Total: ₹ ${mfData.futureValue}`,20,80);
+
+doc.save("mutual-fund-report.pdf");
+}
+
+</script>
+
+</body>
+</html>
