@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMI Calculator - Body Mass Index Calculator | Calciverse</title>
+
+<meta name="description" content="Calculate your Body Mass Index (BMI) instantly using height and weight. Check if you are underweight, normal, overweight or obese.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
+
+<style>
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
+}
+.calc-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+}
+.download-btn{
+    margin-top:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>BMI Calculator</h1>
+<p>Check your body mass index instantly.</p>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+
+<label>Weight (kg)</label>
+<input type="number" id="weight">
+
+<label>Height (cm)</label>
+<input type="number" id="height">
+
+<button class="card-btn" onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
+
+</div>
+
+</div>
+</section>
+
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO -->
+<section class="seo-content">
+<div class="container">
+
+<h2>What is BMI?</h2>
+<p>BMI (Body Mass Index) is a measure used to determine whether a person has a healthy body weight based on height and weight.</p>
+
+<h2>How BMI is Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>BMI is calculated by dividing weight (kg) by the square of height (meters).</p>
+
+<h2>Formula</h2>
+<p><b>BMI = Weight (kg) / Height² (m)</b></p>
+
+<h2>BMI Categories</h2>
+<ul>
+<li>Underweight: Less than 18.5</li>
+<li>Normal: 18.5 – 24.9</li>
+<li>Overweight: 25 – 29.9</li>
+<li>Obese: 30+</li>
+</ul>
+
+<h2>Why BMI is Important?</h2>
+<p>BMI helps identify whether you are at risk of health issues related to underweight or overweight conditions.</p>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Age Calculator</h3>
+<p>Find your exact age.</p>
+<a href="age-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Calorie Calculator</h3>
+<p>Estimate daily calories.</p>
+<a href="#" class="card-btn">Coming Soon</a>
+</div>
+
+<div class="card">
+<h3>Ideal Weight</h3>
+<p>Check ideal body weight.</p>
+<a href="#" class="card-btn">Coming Soon</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+
+</div>
+</footer>
+
+<script>
+
+let bmiData = {};
+
+function calculateBMI(){
+
+let weight = parseFloat(document.getElementById('weight').value);
+let height = parseFloat(document.getElementById('height').value) / 100;
+
+let bmi = weight / (height * height);
+
+let category = "";
+
+if(bmi < 18.5) category = "Underweight";
+else if(bmi < 25) category = "Normal";
+else if(bmi < 30) category = "Overweight";
+else category = "Obese";
+
+bmiData = {weight, height, bmi, category};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Your BMI:</b> ${bmi.toFixed(2)} <br>
+<b>Category:</b> ${category}
+`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+doc.text("BMI Report - Calciverse",20,20);
+doc.text(`BMI: ${bmiData.bmi.toFixed(2)}`,20,40);
+doc.text(`Category: ${bmiData.category}`,20,60);
+
+doc.save("bmi-report.pdf");
+}
+
+</script>
+
+</body>
+</html>
