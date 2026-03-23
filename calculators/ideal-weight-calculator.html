@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ideal Weight Calculator - Find Your Healthy Weight | Calciverse</title>
+
+<meta name="description" content="Calculate your ideal body weight based on height and gender using standard formulas. Free ideal weight calculator.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
+
+<style>
+.calc-box{
+background:#fff;
+padding:30px;
+border-radius:16px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+max-width:800px;
+margin:auto;
+}
+.calc-box input, .calc-box select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+.result-box{
+margin-top:20px;
+padding:20px;
+background:#ecfdf5;
+border-left:5px solid #22c55e;
+border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Ideal Weight Calculator</h1>
+<p>Find your ideal body weight based on your height and gender.</p>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+
+<label>Gender</label>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+
+<label>Height (cm)</label>
+<input type="number" id="height">
+
+<button class="card-btn" onclick="calculateWeight()">Calculate</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+
+</div>
+
+</div>
+</section>
+
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO -->
+<section class="seo-content">
+<div class="container">
+
+<h2>What is Ideal Weight?</h2>
+<p>Ideal body weight is an estimate of the healthiest weight based on height and gender. It helps maintain overall health and fitness.</p>
+
+<h2>How is Ideal Weight Calculated?</h2>
+
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>This calculator uses the Devine formula to estimate ideal body weight.</p>
+
+<h2>Formula</h2>
+<p><b>Male: 50 + 0.9 × (height in cm − 152)</b></p>
+<p><b>Female: 45.5 + 0.9 × (height in cm − 152)</b></p>
+
+<h2>Why Ideal Weight Matters?</h2>
+<ul>
+<li>Better health</li>
+<li>Reduced disease risk</li>
+<li>Improved fitness</li>
+<li>Balanced lifestyle</li>
+</ul>
+
+</div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>BMI Calculator</h3>
+<a href="bmi-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>Calorie Calculator</h3>
+<a href="calorie-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+<div class="footer-links">
+<a href="../about.html">About</a> |
+<a href="../privacy-policy.html">Privacy Policy</a> |
+<a href="../terms.html">Terms</a> |
+<a href="../contact.html">Contact</a>
+</div>
+</div>
+</footer>
+
+<script>
+
+let weightData = {};
+
+function calculateWeight(){
+
+let gender = document.getElementById('gender').value;
+let height = parseFloat(document.getElementById('height').value);
+
+let ideal;
+
+if(gender === "male"){
+ideal = 50 + 0.9 * (height - 152);
+}else{
+ideal = 45.5 + 0.9 * (height - 152);
+}
+
+weightData = {ideal};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML =
+`Ideal Weight: <b>${ideal.toFixed(1)} kg</b>`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+doc.text("Ideal Weight Report - Calciverse",20,20);
+doc.text(`Ideal Weight: ${weightData.ideal.toFixed(1)} kg`,20,40);
+
+doc.save("ideal-weight-report.pdf");
+}
+
+</script>
+
+</body>
+</html>
