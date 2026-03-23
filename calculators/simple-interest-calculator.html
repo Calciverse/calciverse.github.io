@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Interest Calculator | Calciverse</title>
+<meta name="description" content="Calculate simple interest and total amount instantly.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"></script>
+
+<style>
+.calc-box{background:#fff;padding:30px;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.08);max-width:800px;margin:auto;}
+.calc-box input{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ddd;}
+.result-box{margin-top:20px;padding:20px;background:#ecfdf5;border-left:5px solid #22c55e;border-radius:10px;}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="container nav-content">
+<div class="logo">Calciverse</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+<h1>Simple Interest Calculator</h1>
+<p>Calculate interest and total amount easily.</p>
+</div>
+</section>
+
+<section class="categories">
+<div class="container">
+
+<div class="calc-box">
+
+<input type="number" id="p" placeholder="Principal (₹)">
+<input type="number" id="r" placeholder="Rate (%)">
+<input type="number" id="t" placeholder="Time (Years)">
+
+<button class="card-btn" onclick="calcSI()">Calculate</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download Report</button>
+
+</div>
+
+</div>
+</section>
+
+<!-- AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle" style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<section class="seo-content">
+<div class="container">
+<h2>What is Simple Interest?</h2>
+<p>Simple interest is calculated only on the principal amount.</p>
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle" style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<footer class="footer">
+<div class="container">
+<p>© 2026 Calciverse</p>
+</div>
+</footer>
+
+<script>
+let data={};
+
+function calcSI(){
+let p=+document.getElementById('p').value;
+let r=+document.getElementById('r').value;
+let t=+document.getElementById('t').value;
+
+let si=(p*r*t)/100;
+let total=p+si;
+
+data={p,r,t,si,total};
+
+document.getElementById('result').style.display="block";
+document.getElementById('pdfBtn').style.display="inline-block";
+
+document.getElementById('result').innerHTML=
+`Interest: ₹ ${si.toFixed(2)} <br>Total: ₹ ${total.toFixed(2)}`;
+}
+
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc=new jsPDF();
+
+doc.text("Simple Interest Report",20,20);
+doc.text(`Interest: ₹ ${data.si}`,20,40);
+doc.text(`Total: ₹ ${data.total}`,20,60);
+
+doc.save("simple-interest.pdf");
+}
+</script>
+
+</body>
+</html>
