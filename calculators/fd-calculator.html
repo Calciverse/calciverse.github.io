@@ -2,306 +2,253 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>FD Calculator - Fixed Deposit Interest Calculator | Calciverse</title>
+
+<meta name="description" content="Calculate fixed deposit maturity amount, interest earned and total value instantly with our FD calculator.">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FD Calculator – Fixed Deposit Maturity & Interest | Calciverse</title>
+<link rel="stylesheet" href="../css/style.css">
 
-<meta name="description" content="Free FD Calculator to calculate fixed deposit maturity amount and total interest earned instantly. Supports simple and compound interest.">
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<meta name="keywords" content="FD calculator, fixed deposit calculator, FD maturity calculator India, bank FD calculator">
-
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/fd-calculator.html">
-
-<meta property="og:title" content="FD Calculator – Fixed Deposit Maturity Tool">
-<meta property="og:description" content="Calculate FD maturity amount and total interest instantly.">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [{
-   "@type": "Question",
-   "name": "Is FD better than savings account?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Fixed Deposit usually offers higher interest rates compared to savings accounts."
-   }
- },{
-   "@type": "Question",
-   "name": "Is FD taxable?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Yes, interest earned on FD is taxable as per income tax rules."
-   }
- }]
-}
-</script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7962014317457914"
+crossorigin="anonymous"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#f4f6fb;color:#1e293b;}
-
-.navbar{background:#fff;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
-.logo{font-size:20px;font-weight:700;color:#2563eb;}
-nav a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #0F172A;
-    font-weight: 500;
-    transition: 0.3s;
+.calc-box{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    max-width:800px;
+    margin:auto;
 }
 
-nav a:hover {
-    color: #2563EB;
+.calc-box input, .calc-box select{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
 }
 
-.hero{background:linear-gradient(135deg,#2563eb,#4f46e5);padding:60px 20px;text-align:center;color:#fff;}
-.hero h1{font-size:34px;margin-bottom:10px;}
-
-.container{max-width:1000px;margin:auto;padding:40px 20px;}
-.card{background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
-
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-label{font-weight:600;font-size:14px;margin-bottom:6px;}
-input,select{padding:12px;border-radius:10px;border:1px solid #e2e8f0;}
-
-.btn-primary{background:#2563eb;color:#fff;border:none;padding:14px;border-radius:12px;font-weight:600;margin-top:20px;cursor:pointer;width:100%;}
-.btn-primary:hover{background:#1d4ed8;}
-
-.result-box{background:#ecfdf5;border-left:5px solid #10b981;padding:20px;border-radius:12px;margin-top:20px;display:none;}
-canvas{ margin-top:30px; max-height:260px; }
-table{width:100%;border-collapse:collapse;margin-top:20px;}
-th,td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:left;font-size:14px;}
-th{background:#f1f5f9;}
-
-.ad-box{background:#eef2ff;padding:20px;text-align:center;border-radius:12px;margin:30px 0;}
-
-.seo-content{margin-top:60px;line-height:1.8;color:#475569;}
-
-.footer {
-    background: #0F172A;
-    color: white;
-    padding: 30px 0;
-    text-align: center;
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
 }
 
-.footer-links {
-    margin-top: 10px;
+.download-btn{
+    margin-top:15px;
 }
-
-.footer-links a {
-    color: #CBD5E1;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: white;
-}
-
-@media(max-width:768px){.form-grid{grid-template-columns:1fr;}}
 </style>
+
 </head>
 
 <body>
 
-<div class="navbar">
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="container nav-content">
 <div class="logo">Calciverse</div>
 <nav>
-            <a href="../index.html">Home</a>
-            <a href="index.html">Calculators</a>
-            <a href="../about.html">About</a>
- <a href="../contact.html">Contact</a>
-        </nav>
+<a href="../index.html">Home</a>
+<a href="index.html">Calculators</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
 </div>
-</div>
+</header>
 
-<div class="hero">
-<h1>Fixed Deposit (FD) Calculator</h1>
-<p>Calculate FD maturity amount and total interest instantly.</p>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>FD Calculator</h1>
+<p>Calculate fixed deposit maturity and interest easily.</p>
 </div>
+</section>
 
+<!-- CALCULATOR -->
+<section class="categories">
 <div class="container">
 
-<div class="ad-box">Top Ad Space</div>
+<div class="calc-box">
 
-<div class="card">
+<label>Deposit Amount (₹)</label>
+<input type="number" id="p">
 
-<div class="form-grid">
+<label>Interest Rate (%)</label>
+<input type="number" id="r">
 
-<div>
-<label>Principal Amount</label>
-<input type="number" id="principal">
-</div>
+<label>Time (Years)</label>
+<input type="number" id="t">
 
-<div>
-<label>Annual Interest Rate (%)</label>
-<input type="number" id="rate">
-</div>
-
-<div>
-<label>Investment Period (Years)</label>
-<input type="number" id="years">
-</div>
-
-<div>
 <label>Compounding Frequency</label>
-<select id="frequency">
+<select id="n">
 <option value="1">Yearly</option>
 <option value="2">Half-Yearly</option>
 <option value="4">Quarterly</option>
 <option value="12">Monthly</option>
 </select>
-</div>
+
+<button class="card-btn" onclick="calculateFD()">Calculate FD</button>
+
+<div class="result-box" id="result" style="display:none;"></div>
+
+<button class="card-btn download-btn" id="pdfBtn" onclick="downloadPDF()" style="display:none;">
+Download Report
+</button>
 
 </div>
 
-<button class="btn-primary" onclick="calculateFD()">Calculate FD</button>
-
-<div id="result" class="result-box"></div>
-
-<canvas id="fdChart" style="margin-top:30px;height:280px;"></canvas>
-
-<h3 style="margin-top:40px;">Year-wise Growth</h3>
-
-<table id="fdTable">
-<thead>
-<tr>
-<th>Year</th>
-<th>Opening Balance</th>
-<th>Interest</th>
-<th>Closing Balance</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-
 </div>
+</section>
 
-<div class="ad-box">Bottom Ad Space</div>
-
+<!-- AD 1 -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
 </div>
-<div class="seo-content" style="max-width:1000px;margin:60px auto;line-height:1.8;color:#475569;padding:0 20px;">
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+<div class="container">
 
 <h2>What is Fixed Deposit (FD)?</h2>
-<p>
-A Fixed Deposit (FD) is a secure investment option offered by banks and financial institutions where you deposit a lump sum amount for a fixed period at a predetermined interest rate. FD investments are low-risk and ideal for conservative investors.
-</p>
+<p>Fixed Deposit is a safe investment option where you deposit a fixed amount for a specific period and earn interest on it.</p>
 
 <h2>How FD Interest is Calculated?</h2>
-<p>
-FD maturity amount is calculated using the compound interest formula:
-</p>
-<p><strong>A = P (1 + r/n)<sup>nt</sup></strong></p>
-<ul>
-<li>P = Principal amount</li>
-<li>r = Annual interest rate</li>
-<li>n = Compounding frequency per year</li>
-<li>t = Investment tenure in years</li>
-</ul>
 
-<h2>Benefits of Fixed Deposit</h2>
+<div style="margin:20px 0;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<p>FD interest is calculated based on compound interest formula depending on compounding frequency.</p>
+
+<h2>FD Formula</h2>
+<p><b>A = P (1 + r/n)^(n × t)</b></p>
+
+<h2>Example</h2>
+<p>If you invest ₹50,000 at 7% interest for 3 years, your maturity value will increase based on compounding.</p>
+
+<h2>Benefits of FD</h2>
 <ul>
+<li>Safe investment</li>
 <li>Guaranteed returns</li>
-<li>Low investment risk</li>
-<li>Flexible tenure options</li>
-<li>Suitable for short-term and long-term savings</li>
+<li>Flexible tenure</li>
 </ul>
-
-<h2>FD vs Other Investment Options</h2>
-<p>
-FD is safer compared to mutual funds and stock investments. However, returns are lower compared to market-linked instruments. For higher growth, you can try our 
-<a href="sip-calculator.html">SIP Calculator</a> or 
-<a href="compound-interest-calculator.html">Compound Interest Calculator</a>.
-</p>
-
-<h2>Frequently Asked Questions</h2>
-
-<p><strong>Is FD better than savings account?</strong><br>
-Yes, FD usually offers higher interest rates compared to savings accounts.</p>
-
-<p><strong>Can I withdraw FD before maturity?</strong><br>
-Yes, but premature withdrawal may attract a penalty.</p>
-
-<p><strong>Is FD taxable?</strong><br>
-Yes, interest earned on FD is taxable as per income tax rules.</p>
 
 </div>
+</section>
+
+<!-- RELATED -->
+<section class="categories">
+<div class="container">
+
+<h2>Related Calculators</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>SIP Calculator</h3>
+<p>Calculate SIP returns.</p>
+<a href="sip-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>PPF Calculator</h3>
+<p>Estimate PPF maturity.</p>
+<a href="ppf-calculator.html" class="card-btn">Open</a>
+</div>
+
+<div class="card">
+<h3>EMI Calculator</h3>
+<p>Calculate EMI instantly.</p>
+<a href="emi-calculator.html" class="card-btn">Open</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM AD -->
+<div class="container" style="margin:40px auto;">
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-7962014317457914"
+data-ad-slot="1234567890"
+data-ad-format="auto"></ins>
+</div>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- FOOTER -->
 <footer class="footer">
-    <div class="container">
-        <p>© 2026 Calciverse. All Rights Reserved.</p>
-        <div class="footer-links">
-            <a href="../about.html">About</a> |
+<div class="container">
+
+<p>© 2026 Calciverse. All Rights Reserved.</p>
+
+<div class="footer-links">
+<a href="../about.html">About</a> |
 <a href="../privacy-policy.html">Privacy Policy</a> |
-<a href="../terms.html">Terms</a>
+<a href="../terms.html">Terms</a> |
 <a href="../contact.html">Contact</a>
-        </div>
-</footer>
+</div>
+
+</div>
 </footer>
 
 <script>
-let fdChartInstance=null;
+
+let fdData = {};
 
 function calculateFD(){
 
-const P=parseFloat(document.getElementById("principal").value);
-const annual=parseFloat(document.getElementById("rate").value);
-const years=parseFloat(document.getElementById("years").value);
-const n=parseFloat(document.getElementById("frequency").value);
+let P = parseFloat(document.getElementById('p').value);
+let r = parseFloat(document.getElementById('r').value) / 100;
+let t = parseFloat(document.getElementById('t').value);
+let n = parseFloat(document.getElementById('n').value);
 
-if(isNaN(P)||isNaN(annual)||isNaN(years)||P<=0||annual<=0||years<=0){
-alert("Enter valid values");
-return;
+let A = P * Math.pow((1 + r/n), (n * t));
+let interest = A - P;
+
+fdData = {P, r, t, n, A, interest};
+
+document.getElementById('result').style.display = "block";
+document.getElementById('pdfBtn').style.display = "inline-block";
+
+document.getElementById('result').innerHTML = `
+<b>Maturity Amount:</b> ₹ ${A.toFixed(2)} <br>
+<b>Interest Earned:</b> ₹ ${interest.toFixed(2)}
+`;
 }
 
-const r=annual/100;
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
 
-const maturity=P*Math.pow((1+r/n),(n*years));
-const interest=maturity-P;
+doc.text("FD Report - Calciverse",20,20);
+doc.text(`Deposit: ₹ ${fdData.P}`,20,40);
+doc.text(`Interest: ₹ ${fdData.interest.toFixed(2)}`,20,60);
+doc.text(`Total: ₹ ${fdData.A.toFixed(2)}`,20,80);
 
-const result=document.getElementById("result");
-result.style.display="block";
-result.innerHTML=
-"<strong>Maturity Amount:</strong> ₹"+maturity.toFixed(2)+"<br>"+
-"<strong>Total Interest Earned:</strong> ₹"+interest.toFixed(2);
-
-if(fdChartInstance) fdChartInstance.destroy();
-
-fdChartInstance=new Chart(document.getElementById("fdChart"),{
-type:'doughnut',
-data:{
-labels:["Principal","Interest"],
-datasets:[{
-data:[P,interest],
-backgroundColor:["#2563eb","#10b981"]
-}]
+doc.save("fd-report.pdf");
 }
-});
 
-const tbody=document.querySelector("#fdTable tbody");
-tbody.innerHTML="";
-let balance=P;
-
-for(let i=1;i<=years;i++){
-let interestYear=balance*r;
-let closing=balance+interestYear;
-
-let row=document.createElement("tr");
-row.innerHTML=
-"<td>"+i+"</td>"+
-"<td>₹"+balance.toFixed(2)+"</td>"+
-"<td>₹"+interestYear.toFixed(2)+"</td>"+
-"<td>₹"+closing.toFixed(2)+"</td>";
-
-tbody.appendChild(row);
-balance=closing;
-}
-}
 </script>
 
 </body>
