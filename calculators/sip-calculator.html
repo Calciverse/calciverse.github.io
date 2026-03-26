@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SIP Calculator - Systematic Investment Plan Calculator | Calciverse</title>
+<title>SIP Calculator - Systematic Investment Plan Calculator | Calqube</title>
 
 <meta name="description" content="Calculate SIP returns, total investment and wealth gained instantly with our free SIP calculator.">
 
@@ -52,7 +52,7 @@ crossorigin="anonymous"></script>
 <!-- NAVBAR -->
 <header class="navbar">
 <div class="container nav-content">
-<div class="logo">Calciverse</div>
+<div class="logo">Calqube</div>
 <nav>
 <a href="../index.html">Home</a>
 <a href="index.html">Calculators</a>
@@ -190,7 +190,7 @@ data-ad-format="auto"></ins>
 <footer class="footer">
 <div class="container">
 
-<p>© 2026 Calciverse. All Rights Reserved.</p>
+<p>© 2026 Calqube. All Rights Reserved.</p>
 
 <div class="footer-links">
 <a href="../about.html">About</a> |
@@ -235,7 +235,7 @@ function downloadPDF(){
 const { jsPDF } = window.jspdf;
 let doc = new jsPDF();
 
-doc.text("SIP Report - Calciverse",20,20);
+doc.text("SIP Report - Calqube",20,20);
 doc.text(`Monthly Investment: ₹ ${sipData.P}`,20,40);
 doc.text(`Total Investment: ₹ ${sipData.invested.toFixed(2)}`,20,60);
 doc.text(`Returns: ₹ ${sipData.returns.toFixed(2)}`,20,80);
