@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FD Calculator - Fixed Deposit Interest Calculator | Calciverse</title>
+<title>FD Calculator - Fixed Deposit Interest Calculator | Calqube</title>
 
 <meta name="description" content="Calculate fixed deposit maturity amount, interest earned and total value instantly with our FD calculator.">
 
@@ -55,7 +55,7 @@ crossorigin="anonymous"></script>
 <!-- NAVBAR -->
 <header class="navbar">
 <div class="container nav-content">
-<div class="logo">Calciverse</div>
+<div class="logo">Calqube</div>
 <nav>
 <a href="../index.html">Home</a>
 <a href="index.html">Calculators</a>
@@ -200,7 +200,7 @@ data-ad-format="auto"></ins>
 <footer class="footer">
 <div class="container">
 
-<p>© 2026 Calciverse. All Rights Reserved.</p>
+<p>© 2026 Calqube. All Rights Reserved.</p>
 
 <div class="footer-links">
 <a href="../about.html">About</a> |
@@ -241,7 +241,7 @@ function downloadPDF(){
 const { jsPDF } = window.jspdf;
 let doc = new jsPDF();
 
-doc.text("FD Report - Calciverse",20,20);
+doc.text("FD Report - Calqube",20,20);
 doc.text(`Deposit: ₹ ${fdData.P}`,20,40);
 doc.text(`Interest: ₹ ${fdData.interest.toFixed(2)}`,20,60);
 doc.text(`Total: ₹ ${fdData.A.toFixed(2)}`,20,80);
