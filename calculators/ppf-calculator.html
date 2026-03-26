@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PPF Calculator - Public Provident Fund Calculator | Calciverse</title>
+<title>PPF Calculator - Public Provident Fund Calculator | Calqube</title>
 
 <meta name="description" content="Calculate PPF maturity amount, total investment and interest earned easily with our PPF calculator.">
 
@@ -52,7 +52,7 @@ crossorigin="anonymous"></script>
 <!-- NAVBAR -->
 <header class="navbar">
 <div class="container nav-content">
-<div class="logo">Calciverse</div>
+<div class="logo">Calqube</div>
 <nav>
 <a href="../index.html">Home</a>
 <a href="index.html">Calculators</a>
@@ -190,7 +190,7 @@ data-ad-format="auto"></ins>
 <footer class="footer">
 <div class="container">
 
-<p>© 2026 Calciverse. All Rights Reserved.</p>
+<p>© 2026 Calqube. All Rights Reserved.</p>
 
 <div class="footer-links">
 <a href="../about.html">About</a> |
@@ -237,7 +237,7 @@ function downloadPDF(){
 const { jsPDF } = window.jspdf;
 let doc = new jsPDF();
 
-doc.text("PPF Report - Calciverse",20,20);
+doc.text("PPF Report - Calqube",20,20);
 doc.text(`Yearly Investment: ₹ ${ppfData.yearly}`,20,40);
 doc.text(`Total Investment: ₹ ${ppfData.invested.toFixed(2)}`,20,60);
 doc.text(`Interest: ₹ ${ppfData.interest.toFixed(2)}`,20,80);
